@@ -16,4 +16,5 @@
 body {
   /* Testing */
   background-color: var(--my-awesome-color);
+  text-align: center;
 }
