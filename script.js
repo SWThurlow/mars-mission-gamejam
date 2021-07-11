@@ -1,64 +1,90 @@
+//Import questions array.
+import {questions} from'./questions.js';
+
 //Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');
 const qBox = document.querySelector('.questionBox');
 
-/*Generating and displaying question - To be revisited
-when we have our space questions sorted out.*/
-//Generating random numbers, wont be needed for space questions.
-function getNum() {
-    return Math.floor(Math.random() * 10);
+//To keep track of asked questions.
+let qsAsked = [];
+
+//Picking and displaying a random question.
+function pickQ(){
+    let selected = questions[Math.floor(Math.random() * questions.length)];
+    if(qsAsked.indexOf(selected) !== -1){
+        selected = pickQ();
+    } else {
+        qsAsked.push(selected);
+    } 
+    return selected;
 }
 
-//Checking answers will need altering for space questions.
-function checkAnswer(num1, num2, answer) {
-    //A switch statment to check if multiple choice or input type
-    //question could be good.
-    if(!(Number(answer) > 0 && Number(answer) < 20)){
-        return;
-    } else {
-        if(num1 + num2 === Number(answer)) {
-            [...qBox.childNodes].forEach(child => qBox.removeChild(child));
-            const congratsMsg = document.createElement('p');
-            congratsMsg.innerHTML = "That's Right <br> Well Done!";
-            qBox.appendChild(congratsMsg);
+function displayQ(question) {
+    const qInfo = document.createElement('p');
+    const asking = document.createElement('p');
+    function  displayInputQ() {
+        qInfo.textContent = question.info;
+        qBox.appendChild(qInfo);
 
-            setTimeout(() => {
-                qBox.removeChild(congratsMsg);
-                newQuestion();
-            }, 2000);
-        }
+        asking.textContent = question.question;
+        qBox.appendChild(asking);
+
+        const answerInput = document.createElement('input');
+        answerInput.classList.add('answer');
+        qBox.appendChild(answerInput);
+
+        const answerBtn = document.createElement('button');
+        answerBtn.textContent = 'Answer';
+        answerBtn.addEventListener('click', () => {
+            marking(question, answerInput.value)
+        });
+        qBox.appendChild(answerBtn);
+    }
+
+    function displayMultipleQ() {
+        //function to display multiple choice questions.
+    }
+
+    function displayYesNoQ() {
+        //function to display yes or no questions.
+    }
+
+    switch(question.questionType) {
+        case 'input':
+            return displayInputQ();
+        case 'multiple':
+            return displayMultipleQ();
+        case 'yes/no':
+            return displayYesNoQ();
+    }
+
+};
+
+//Checking answers.
+function marking(question, answer) {
+    let expected = question.expectedAnswer;
+    if(answer === expected) {
+        wellDone();
+    } else {
+        keepTrying(question);
     }
 }
 
-//Displaying generated numbers as a question. 
-//Will need changing for space questions.
-function displayQ(num1, num2) {
-    //Another switch statement to check question type?
-    const qDisplay = document.createElement('p');
-    qDisplay.textContent = `${num1} + ${num2} = `
-    qBox.appendChild(qDisplay);
-
-    const answerInput = document.createElement('input');
-    qBox.appendChild(answerInput);
-
-    const answerBtn = document.createElement('button');
-    answerBtn.textContent = 'Answer';
-    answerBtn.addEventListener('click', () => {
-        checkAnswer(num1, num2, answerInput.value);
-    });
-    qBox.appendChild(answerBtn);
+//If answer is correct.
+function wellDone() {
+    const wellDoneMsg = document.createElement('p');
+    wellDoneMsg.textContent = "That's Correct! Well Done!";
+    qBox.appendChild(wellDoneMsg);
 }
 
-//Bringing all the other functions together. 
-function newQuestion() {
-    const num1 = getNum();
-    const num2 = getNum();
-    displayQ(num1, num2);
+//If answer is wrong. 
+function keepTrying(question) {
+    const keepTrying = document.createElement('p');
+    keepTrying.textContent = "Unfortunately that's not right. Hopefully this explination can help you understand more.";
+    qBox.appendChild(keepTrying);
+    const explination = document.createElement('p');
+    explination.textContent= question.explination;
+    qBox.appendChild(explination);
 }
 
-newQuestion();
-/*End of section that should need revisiting once we have space questions. 
-It would be better to not have it all just as functions in the long run.
-I'm thinking that newQuestion should be an IFFE and that returns displayQ and
-checkAnswer. That way the set timeout for the congratsMsg could be moved 
-out of checkAnswer so that the game is less recursive.*/
+displayQ(questions[0]);
