@@ -42,11 +42,42 @@ function displayQ(question) {
     }
 
     function displayMultipleQ() {
-        //function to display multiple choice questions.
+        qInfo.textContent = question.info;
+        qBox.appendChild(qInfo);
+
+        asking.textContent = question.question;
+        qBox.appendChild(asking);
+
+        question.choices.forEach(answer => {
+            const answerBtn = document.createElement('button');
+            answerBtn.textContent = answer;
+            answerBtn.addEventListener('click', () => {
+                marking(question, answer);
+            });
+            qBox.appendChild(answerBtn);
+        });
     }
 
     function displayYesNoQ() {
-        //function to display yes or no questions.
+        qInfo.textContent = question.info;
+        qBox.appendChild(qInfo);
+
+        asking.textContent = question.question;
+        qBox.appendChild(asking);
+
+        const yes = document.createElement('button');
+        yes.textContent = 'Yes';
+        yes.addEventListener('click', () => {
+            marking(question, 'Yes');
+        });
+        qBox.appendChild(yes);
+
+        const no = document.createElement('button');
+        no.textContent = 'No';
+        no.addEventListener('click', () => {
+            marking(question, 'No');
+        });
+        qBox.appendChild(no);   
     }
 
     switch(question.questionType) {
@@ -87,4 +118,4 @@ function keepTrying(question) {
     qBox.appendChild(explination);
 }
 
-displayQ(questions[0]);
+displayQ(pickQ());

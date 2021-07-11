@@ -34,6 +34,14 @@ const questions = [
         questionType: "input",
         expectedAnswer: "8",
         explination: "We can count the time to reach the moon as 4 days and the time there as 1 day as was is slightly longer and the other is slightly shorter than a full day. This means to figure out how long it took we have to add 4, 1 and 3. 4 + 1 + 3 = 8"
+    }, 
+    {
+        info: "The Earth sits at a slight angle in its orbit around the sun. This tilt in the Earths axis means that different parts of the Earth receive the suns most direct rays. When the North Pole tilts towards the sun it is summer in the Northern Hemisphere and when the South Pole tilts towards the sun it is summer in the Southern Hemisphere.",
+        question: "What is it that causes the different seasons?",
+        questionType: "multiple",
+        expectedAnswer: "The tilt in the Earth's axis.",
+        choices: ["The tilt in the Earth's axis.", "The Earth getting closer and further from the sun throughout the year.", "Father Christmas"],
+        explination: "The tilt in the Earth’s axis means that at different times of year different parts of the earth get more direct sunlight. When a part of the Earth is getting more sunlight it gets warmer(spring/summer) and when a part of the Earth gets less sunlight it tends to be colder(autumn/winter)."
     }
 ];
 
