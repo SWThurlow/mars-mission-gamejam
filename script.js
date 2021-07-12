@@ -119,3 +119,27 @@ function keepTrying(question) {
 }
 
 displayQ(pickQ());
+
+/* =================================
+   =  HANDLE START MODAL           =                                               
+   ================================= */
+
+const modalStartOuter = document.querySelector('.modal-start-outer');
+const modalStartInner = document.querySelector('.modal-start-inner');
+const startBtn = document.querySelector('#start-btn');
+const modalHelpOuter = document.querySelector('.modal-help-outer');
+const modalHelpInner = document.querySelector('.modal-help-inner');
+const helpBtn = document.querySelector('#help-btn');
+const helpCloseBtn = document.querySelector('#help-close-btn');
+
+modalStartOuter.classList.add('open');
+
+startBtn.addEventListener('click', () =>
+  modalStartOuter.classList.remove('open')
+);
+
+helpBtn.addEventListener('click', () => modalHelpOuter.classList.add('open'));
+
+helpCloseBtn.addEventListener('click', () =>
+  modalHelpOuter.classList.remove('open')
+);
