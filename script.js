@@ -125,10 +125,8 @@ displayQ(pickQ());
    ================================= */
 
 const modalStartOuter = document.querySelector('.modal-start-outer');
-const modalStartInner = document.querySelector('.modal-start-inner');
 const startBtn = document.querySelector('#start-btn');
 const modalHelpOuter = document.querySelector('.modal-help-outer');
-const modalHelpInner = document.querySelector('.modal-help-inner');
 const helpBtn = document.querySelector('#help-btn');
 const helpCloseBtn = document.querySelector('#help-close-btn');
 
