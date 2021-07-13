@@ -121,7 +121,7 @@ function keepTrying(question) {
 displayQ(pickQ());
 
 /* =================================
-   =  HANDLE START MODAL           =                                               
+   =  HANDLE START MODAL           =
    ================================= */
 
 const modalStartOuter = document.querySelector('.modal-start-outer');
