@@ -128,6 +128,7 @@ const helpBtn = document.getElementById('help-btn');
 const helpCloseBtn = document.getElementById('help-close-btn');*/
 
 startBtn.addEventListener('click', () => {
+  gameArea.removeChild(startScreen);
   displayQ(pickQ());
 });
 /*
