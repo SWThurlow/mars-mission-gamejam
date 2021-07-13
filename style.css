@@ -10,6 +10,8 @@
 /* CUSTOM PROPS */
 :root {
   --my-awesome-color: hsla(133, 100%, 50%, 0.781);
+  --modal-outer: hsla(0,0%,0%,0.8);
+  --modal-inner-bg: hsla(0,0%,100%,1);
 }
 
 /* TAGS */
