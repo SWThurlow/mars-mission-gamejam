@@ -118,23 +118,26 @@ function keepTrying(question) {
   qBox.appendChild(explanation);
 }
 
+displayQ(pickQ());
 
-/*Start screen*/
+/* =================================
+   =  HANDLE START MODAL           =
+   ================================= */
 
-const startScreen = document.querySelector('.startScreen');
-const startBtn = document.getElementById('start-btn');
-/*const modalHelpOuter = document.querySelector('.modal-help-outer');
-const helpBtn = document.getElementById('help-btn');
-const helpCloseBtn = document.getElementById('help-close-btn');*/
+const modalStartOuter = document.querySelector('.modal-start-outer');
+const startBtn = document.querySelector('#start-btn');
+const modalHelpOuter = document.querySelector('.modal-help-outer');
+const helpBtn = document.querySelector('#help-btn');
+const helpCloseBtn = document.querySelector('#help-close-btn');
 
-startBtn.addEventListener('click', () => {
-  gameArea.removeChild(startScreen);
-  displayQ(pickQ());
-});
-/*
+modalStartOuter.classList.add('open');
+
+startBtn.addEventListener('click', () =>
+  modalStartOuter.classList.remove('open')
+);
+
 helpBtn.addEventListener('click', () => modalHelpOuter.classList.add('open'));
 
 helpCloseBtn.addEventListener('click', () =>
   modalHelpOuter.classList.remove('open')
 );
-*/
