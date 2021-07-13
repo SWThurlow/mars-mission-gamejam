@@ -5,30 +5,36 @@ import { questions } from './questions.js';
 const gameArea = document.querySelector('.gameArea');
 const qBox = document.querySelector('.questionBox');
 
-// To keep track of asked questions.
+// To keep track of asked questions. 
+//In global scope to make it easier to use throughout game.
 const qsAsked = [];
 
 // Picking and displaying a random question.
-function pickQ() {
+//Done as an IFFE as most of these fuunctions are just called by each other.
+const questioning = (() => {
+  //Picking a random question and checking it hasn't already been picked.
+  function pickQ() {
   let selected = questions[Math.floor(Math.random() * questions.length)];
   if (qsAsked.indexOf(selected) !== -1) {
-    selected = pickQ();
+  selected = pickQ();
   } else {
-    qsAsked.push(selected);
+  qsAsked.push(selected);
   }
   return selected;
-}
-
-function displayQ(question) {
+  }
+  
+  //Elements used to display question.
   const qInfo = document.createElement('p');
   const asking = document.createElement('p');
-  function displayInputQ() {
+  
+  //Functions for displaying different types of questions.
+  function displayInputQ(question) {
     qInfo.textContent = question.info;
     qBox.appendChild(qInfo);
-
+    
     asking.textContent = question.question;
     qBox.appendChild(asking);
-
+    
     const answerInput = document.createElement('input');
     answerInput.classList.add('answer');
     qBox.appendChild(answerInput);
@@ -40,14 +46,14 @@ function displayQ(question) {
     });
     qBox.appendChild(answerBtn);
   }
-
-  function displayMultipleQ() {
+  
+  function displayMultipleQ(question) {
     qInfo.textContent = question.info;
     qBox.appendChild(qInfo);
-
+    
     asking.textContent = question.question;
     qBox.appendChild(asking);
-
+    
     question.choices.forEach(answer => {
       const answerBtn = document.createElement('button');
       answerBtn.textContent = answer;
@@ -58,7 +64,7 @@ function displayQ(question) {
     });
   }
 
-  function displayYesNoQ() {
+  function displayYesNoQ(question) {
     qInfo.textContent = question.info;
     qBox.appendChild(qInfo);
 
@@ -80,64 +86,70 @@ function displayQ(question) {
     qBox.appendChild(no);
   }
 
-  switch (question.questionType) {
-    case 'input':
-      return displayInputQ();
-    case 'multiple':
-      return displayMultipleQ();
-    case 'yes/no':
-      return displayYesNoQ();
+  //Switch statment to select the right function to display the question.
+  //Is wrapped in a statement to call pickQ() as a default argument and mean it can be called in the global scope (in the game function).
+  function displayQ(question = pickQ()) { 
+    switch (question.questionType) {
+      case 'input':
+      return displayInputQ(question);
+      case 'multiple':
+      return displayMultipleQ(question);
+      case 'yes/no':
+      return displayYesNoQ(question);
+    }
   }
-}
 
-// Checking answers.
-function marking(question, answer) {
-  const expected = question.expectedAnswer;
-  if (answer === expected) {
-    wellDone();
-  } else {
-    keepTrying(question);
+  // Checking answers.
+  function marking(question, answer) {
+    const expected = question.expectedAnswer;
+    if (answer === expected) {
+      wellDone();
+    } else {
+      keepTrying(question);
+    }
   }
-}
 
-// If answer is correct.
-function wellDone() {
-  const wellDoneMsg = document.createElement('p');
-  wellDoneMsg.textContent = "That's Correct! Well Done!";
-  qBox.appendChild(wellDoneMsg);
-}
+  // If answer is correct.
+  function wellDone() {
+    const wellDoneMsg = document.createElement('p');
+    wellDoneMsg.textContent = "That's Correct! Well Done!";
+    qBox.appendChild(wellDoneMsg);
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Onwards!'
+    qBox.appendChild(nextBtn);
+  }
 
-// If answer is wrong.
-function keepTrying(question) {
-  const keepTrying = document.createElement('p');
-  keepTrying.textContent =
+  // If answer is wrong.
+  function keepTrying(question) {
+    const keepTrying = document.createElement('p');
+    keepTrying.textContent =
     "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
-  qBox.appendChild(keepTrying);
-  const explanation = document.createElement('p');
-  explanation.textContent = question.explanation;
-  qBox.appendChild(explanation);
-}
+    qBox.appendChild(keepTrying);
+    const explanation = document.createElement('p');
+    explanation.textContent = question.explanation;
+    qBox.appendChild(explanation);
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Onwards!'
+    qBox.appendChild(nextBtn);
+  }
+  return {displayQ}
+})();
 
-displayQ(pickQ());
+/*Start screen*/
+const startScreen = document.querySelector('.startScreen');
+const startBtn = document.getElementById('start-btn');
+/*const modalHelpOuter = document.querySelector('.modal-help-outer');
+const helpBtn = document.getElementById('help-btn');
+const helpCloseBtn = document.getElementById('help-close-btn');*/
 
-/* =================================
-   =  HANDLE START MODAL           =                                               
-   ================================= */
-
-const modalStartOuter = document.querySelector('.modal-start-outer');
-const startBtn = document.querySelector('#start-btn');
-const modalHelpOuter = document.querySelector('.modal-help-outer');
-const helpBtn = document.querySelector('#help-btn');
-const helpCloseBtn = document.querySelector('#help-close-btn');
-
-modalStartOuter.classList.add('open');
-
-startBtn.addEventListener('click', () =>
-  modalStartOuter.classList.remove('open')
-);
-
+startBtn.addEventListener('click', () => {
+  gameArea.removeChild(startScreen);
+  questioning.displayQ();
+});
+/*
 helpBtn.addEventListener('click', () => modalHelpOuter.classList.add('open'));
 
 helpCloseBtn.addEventListener('click', () =>
-  modalHelpOuter.classList.remove('open')
+modalHelpOuter.classList.remove('open')
 );
+*/
