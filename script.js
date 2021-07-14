@@ -91,11 +91,14 @@ const questioning = (() => {
   function displayQ(question = pickQ()) { 
     switch (question.questionType) {
       case 'input':
-      return displayInputQ(question);
+        displayInputQ(question);
+        break;
       case 'multiple':
-      return displayMultipleQ(question);
+        displayMultipleQ(question);
+        break;
       case 'yes/no':
-      return displayYesNoQ(question);
+        displayYesNoQ(question);
+        break;
     }
   }
 
@@ -135,21 +138,48 @@ const questioning = (() => {
   return {displayQ}
 })();
 
-/*Start screen*/
-const startScreen = document.querySelector('.startScreen');
-const startBtn = document.getElementById('start-btn');
-/*const modalHelpOuter = document.querySelector('.modal-help-outer');
-const helpBtn = document.getElementById('help-btn');
-const helpCloseBtn = document.getElementById('help-close-btn');*/
-
+//Start screen.
+const start = document.createElement('div');
+start.classList.add('start');
+const startH2 = document.createElement('h2');
+startH2.textContent = 'Mission: Mars';
+start.appendChild(startH2);
+const startH3 = document.createElement('h3');
+startH3.textContent = 'Can you command a rocket to Mars?';
+start.appendChild(startH3);
+const startBtn = document.createElement('button');
+startBtn.textContent = 'Start';
 startBtn.addEventListener('click', () => {
-  gameArea.removeChild(startScreen);
+  gameArea.removeChild(start);
   questioning.displayQ();
 });
-/*
-helpBtn.addEventListener('click', () => modalHelpOuter.classList.add('open'));
+start.appendChild(startBtn);
+const helpBtn = document.createElement('button');
+helpBtn.textContent = 'Help';helpBtn.addEventListener('click', () => {
+  gameArea.removeChild(start);
+  gameArea.appendChild(help);
+});
+start.appendChild(helpBtn);
 
-helpCloseBtn.addEventListener('click', () =>
-modalHelpOuter.classList.remove('open')
-);
-*/
+//For on page load.
+gameArea.appendChild(start);
+
+//Help screen.
+const help = document.createElement('div');
+help.classList.add('help');
+const helpH2 = document.createElement('h2');
+helpH2.textContent = 'Mission: Mars';
+help.appendChild(helpH2);
+const helpH3 = document.createElement('h3');
+helpH3.textContent = 'How To Play The Game';
+help.appendChild(helpH3);
+const gameInstructions = document.createElement('p');
+gameInstructions.textContent = "You've been selected to be the captain of the first manned space mission to Mars! As the captain of the mission you will need to help the crew answer questions that will help power the ship and make sure you make it to mars in one piece."
+help.appendChild(gameInstructions);
+const backBtn = document.createElement('button');
+backBtn.textContent = 'Close';
+backBtn.addEventListener('click', () => {
+  gameArea.removeChild(help);
+  gameArea.appendChild(start);
+})
+help.appendChild(backBtn);
