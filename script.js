@@ -3,7 +3,6 @@ import { questions } from './questions.js';
 
 // Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');
-const qBox = document.querySelector('.questionBox');
 
 // To keep track of asked questions. 
 //In global scope to make it easier to use throughout game.
@@ -30,29 +29,29 @@ const questioning = (() => {
   //Functions for displaying different types of questions.
   function displayInputQ(question) {
     qInfo.textContent = question.info;
-    qBox.appendChild(qInfo);
+    gameArea.appendChild(qInfo);
     
     asking.textContent = question.question;
-    qBox.appendChild(asking);
+    gameArea.appendChild(asking);
     
     const answerInput = document.createElement('input');
     answerInput.classList.add('answer');
-    qBox.appendChild(answerInput);
+    gameArea.appendChild(answerInput);
 
     const answerBtn = document.createElement('button');
     answerBtn.textContent = 'Answer';
     answerBtn.addEventListener('click', () => {
       marking(question, answerInput.value);
     });
-    qBox.appendChild(answerBtn);
+    gameArea.appendChild(answerBtn);
   }
   
   function displayMultipleQ(question) {
     qInfo.textContent = question.info;
-    qBox.appendChild(qInfo);
+    gameArea.appendChild(qInfo);
     
     asking.textContent = question.question;
-    qBox.appendChild(asking);
+    gameArea.appendChild(asking);
     
     question.choices.forEach(answer => {
       const answerBtn = document.createElement('button');
@@ -60,30 +59,30 @@ const questioning = (() => {
       answerBtn.addEventListener('click', () => {
         marking(question, answer);
       });
-      qBox.appendChild(answerBtn);
+      gameArea.appendChild(answerBtn);
     });
   }
 
   function displayYesNoQ(question) {
     qInfo.textContent = question.info;
-    qBox.appendChild(qInfo);
+    gameArea.appendChild(qInfo);
 
     asking.textContent = question.question;
-    qBox.appendChild(asking);
+    gameArea.appendChild(asking);
 
     const yes = document.createElement('button');
     yes.textContent = 'Yes';
     yes.addEventListener('click', () => {
       marking(question, 'Yes');
     });
-    qBox.appendChild(yes);
+    gameArea.appendChild(yes);
 
     const no = document.createElement('button');
     no.textContent = 'No';
     no.addEventListener('click', () => {
       marking(question, 'No');
     });
-    qBox.appendChild(no);
+    gameArea.appendChild(no);
   }
 
   //Switch statment to select the right function to display the question.
@@ -114,29 +113,82 @@ const questioning = (() => {
 
   // If answer is correct.
   function wellDone() {
+    [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
     const wellDoneMsg = document.createElement('p');
     wellDoneMsg.textContent = "That's Correct! Well Done!";
-    qBox.appendChild(wellDoneMsg);
+    gameArea.appendChild(wellDoneMsg);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!'
-    qBox.appendChild(nextBtn);
+    nextBtn.setAttribute('data-correct', 'true');
+    nextBtn.addEventListener('click', (e) => {
+      winLose.winLose(e.target);
+    });
+    gameArea.appendChild(nextBtn);
   }
 
   // If answer is wrong.
   function keepTrying(question) {
+    [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
     "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
-    qBox.appendChild(keepTrying);
+    gameArea.appendChild(keepTrying);
     const explanation = document.createElement('p');
     explanation.textContent = question.explanation;
-    qBox.appendChild(explanation);
+    gameArea.appendChild(explanation);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!'
-    qBox.appendChild(nextBtn);
+    nextBtn.setAttribute('data-correct', 'false');
+    nextBtn.addEventListener('click', (e) => {
+      winLose.winLose(e.target);
+    });
+    gameArea.appendChild(nextBtn);
   }
   return {displayQ}
 })();
+
+//Counting up correct/wrong answers wo check for win/loss conditions.
+const winLose = (() => {
+  let right = 0;
+  let wrong = 0;
+
+  function win() {
+    const winMsg = document.createElement('p');
+    winMsg.textContent = 'Congratulations! You made it to Mars!'
+    gameArea.appendChild(winMsg);
+  }
+
+  function loss() {
+    const loseMsg = document.createElement('p');
+    loseMsg.textContent = "Ohh NO! We've ran out of fuel! ";
+    gameArea.appendChild(loseMsg);
+  }
+
+  function winLose(target){
+    if(target.dataset.correct === 'true'){
+      right++;
+      [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
+      if(right === 2) {
+        win();
+      } else {
+        questioning.displayQ()
+      }
+    } else {
+      wrong++;
+      [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
+      if(wrong === 2) {
+        loss();
+      } else {
+        questioning.displayQ()
+      }
+    }
+  }
+
+  return {winLose}
+})();
+
+
+
 
 //Start screen.
 const start = document.createElement('div');
