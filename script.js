@@ -23,15 +23,15 @@ const questioning = (() => {
   }
 
   //Variables for displaying questions needed in multiple functions.
+  const questionsBox = document.createElement('div');
+  questionsBox.classList.add('quesitonBox');
   const questionAndDetails = document.createElement("details");
+  questionAndDetails.classList.add("questionContainer");
   const qInfo = document.createElement('p');
+  qInfo.classList.add("qInfo");
   const questionText = document.createElement('summary'); 
-
-  function displayQ(question) {
-    qInfo.classList.add("qInfo");
-    questionText.classList.add("questionText");
-    questionAndDetails.classList.add("questionContainer");
-  }
+  questionText.classList.add("questionText");
+    
 
   function displayInputQ(question) {
     const answerInput = document.createElement('input'); 
@@ -48,12 +48,13 @@ const questioning = (() => {
     answerBtn.textContent = 'Answer';
 
     answerBtn.addEventListener('click', () => {
+      [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
       marking(question, answerInput.value);
     });    
 
-    gameArea.appendChild(questionAndDetails);
-    gameArea.appendChild(answerInput);    
-    gameArea.appendChild(answerBtn);
+    questionsBox.appendChild(questionAndDetails);
+    questionsBox.appendChild(answerInput);    
+    questionsBox.appendChild(answerBtn);
   }
 
   function displayMultipleQ(question) {      
@@ -65,7 +66,7 @@ const questioning = (() => {
     questionAndDetails.appendChild(questionText);
     questionAndDetails.appendChild(qInfo); 
 
-    gameArea.appendChild(questionAndDetails);
+    questionsBox.appendChild(questionAndDetails);
 
     question.choices.forEach(answer => {
       const answerBtn = document.createElement('button');
@@ -74,12 +75,13 @@ const questioning = (() => {
 
       answerBtn.textContent = answer;
       answerBtn.addEventListener('click', () => {
+        [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
         marking(question, answer);
       });
       answerBtnContainer.appendChild(answerBtn);
     });
 
-    gameArea.appendChild(answerBtnContainer);
+    questionsBox.appendChild(answerBtnContainer);
 
   }
 
@@ -89,7 +91,7 @@ const questioning = (() => {
 
     questionAndDetails.appendChild(qInfo);
     questionAndDetails.appendChild(questionText);
-    gameArea.appendChild(questionAndDetails);
+    questionsBox.appendChild(questionAndDetails);
 
     const yes = document.createElement('button');
     const no = document.createElement('button');
@@ -99,20 +101,23 @@ const questioning = (() => {
     yes.textContent = 'Yes';
     no.textContent = 'No';
     yes.addEventListener('click', () => {
+      [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
       marking(question, 'Yes');
     });
     
     no.addEventListener('click', () => {
+      [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
       marking(question, 'No');
     });
 
-    gameArea.appendChild(yes);
-    gameArea.appendChild(no);
+    questionsBox.appendChild(yes);
+    questionsBox.appendChild(no);
   }
 
   //Switch statment to select the right function to display the question.
   //Is wrapped in a statement to call pickQ() as a default argument and mean it can be called in the global scope (in the game function).
   function displayQ(question = pickQ()) { 
+    gameArea.appendChild(questionsBox);
     switch (question.questionType) {
       case 'input':
         displayInputQ(question);
@@ -138,7 +143,7 @@ const questioning = (() => {
 
   // If answer is correct.
   function wellDone() {
-    [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
+    gameArea.removeChild(questionsBox);
     const wellDoneMsg = document.createElement('p');
     wellDoneMsg.textContent = "That's Correct! Well Done!";
     gameArea.appendChild(wellDoneMsg);
@@ -227,7 +232,6 @@ start.appendChild(startH3);
 const startBtn = document.createElement('button');
 startBtn.textContent = 'Start';
 startBtn.addEventListener('click', () => {
-  console.log('hi');
   gameArea.removeChild(start);
   questioning.displayQ();
 });
