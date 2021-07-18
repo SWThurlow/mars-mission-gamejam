@@ -11,78 +11,102 @@ const qsAsked = [];
 // Picking and displaying a random question.
 //Done as an IFFE as most of these fuunctions are just called by each other.
 const questioning = (() => {
-  //Picking a random question and checking it hasn't already been picked.
-  function pickQ() {
-  let selected = questions[Math.floor(Math.random() * questions.length)];
-  if (qsAsked.indexOf(selected) !== -1) {
-  selected = pickQ();
-  } else {
-  qsAsked.push(selected);
+    //Picking a random question and checking it hasn't already been picked.
+    function pickQ() {
+    let selected = questions[Math.floor(Math.random() * questions.length)];
+    if (qsAsked.indexOf(selected) !== -1) {
+    selected = pickQ();
+    } else {
+    qsAsked.push(selected);
+    }
+    return selected;
   }
-  return selected;
-  }
-  
-  //Elements used to display question.
-  const qInfo = document.createElement('p');
-  const asking = document.createElement('p');
-  
-  //Functions for displaying different types of questions.
-  function displayInputQ(question) {
-    qInfo.textContent = question.info;
-    gameArea.appendChild(qInfo);
-    
-    asking.textContent = question.question;
-    gameArea.appendChild(asking);
-    
-    const answerInput = document.createElement('input');
-    answerInput.classList.add('answer');
-    gameArea.appendChild(answerInput);
 
+  function displayQ(question) {
+    const questionAndDetails = document.createElement("details");
+    const qInfo = document.createElement('p');
+    const questionText = document.createElement('summary'); 
+
+    qInfo.classList.add("qInfo");
+    questionText.classList.add("questionText");
+    questionAndDetails.classList.add("questionContainer");
+  }
+
+  function displayInputQ() {
+    const answerInput = document.createElement('input'); 
     const answerBtn = document.createElement('button');
+
+    qInfo.textContent = question.info;
+    questionText.textContent = question.question;
+
+    questionAndDetails.appendChild(questionText);
+    questionAndDetails.appendChild(qInfo);    
+
+    answerInput.classList.add('answer');
+    answerBtn.classList.add("submitAnswerBtn");
     answerBtn.textContent = 'Answer';
+
     answerBtn.addEventListener('click', () => {
       marking(question, answerInput.value);
-    });
-    gameArea.appendChild(answerBtn);
+    });    
+
+    qBox.appendChild(questionAndDetails);
+    qBox.appendChild(answerInput);    
+    qBox.appendChild(answerBtn);
   }
-  
-  function displayMultipleQ(question) {
+
+  function displayMultipleQ() {      
+    const answerBtnContainer = document.createElement('div');
+
     qInfo.textContent = question.info;
-    gameArea.appendChild(qInfo);
-    
-    asking.textContent = question.question;
-    gameArea.appendChild(asking);
-    
+    questionText.textContent = question.question;
+
+    questionAndDetails.appendChild(questionText);
+    questionAndDetails.appendChild(qInfo); 
+
+    qBox.appendChild(questionAndDetails);
+
     question.choices.forEach(answer => {
       const answerBtn = document.createElement('button');
+      answerBtn.classList.add("answerBtn");
+      answerBtnContainer.classList.add("answerBtnContainer");
+
       answerBtn.textContent = answer;
       answerBtn.addEventListener('click', () => {
         marking(question, answer);
       });
-      gameArea.appendChild(answerBtn);
+      answerBtnContainer.appendChild(answerBtn);
     });
+
+    qBox.appendChild(answerBtnContainer);
+
   }
 
   function displayYesNoQ(question) {
     qInfo.textContent = question.info;
-    gameArea.appendChild(qInfo);
+    questionText.textContent = question.question;
 
-    asking.textContent = question.question;
-    gameArea.appendChild(asking);
+    questionAndDetails.appendChild(qInfo);
+    questionAndDetails.appendChild(questionText);
+    qBox.appendChild(questionAndDetails);
 
     const yes = document.createElement('button');
+    const no = document.createElement('button');
+    yes.classList.add("answerBtn");
+    no.classList.add("answerBtn");
+
     yes.textContent = 'Yes';
+    no.textContent = 'No';
     yes.addEventListener('click', () => {
       marking(question, 'Yes');
     });
-    gameArea.appendChild(yes);
-
-    const no = document.createElement('button');
-    no.textContent = 'No';
+    
     no.addEventListener('click', () => {
       marking(question, 'No');
     });
-    gameArea.appendChild(no);
+
+    qBox.appendChild(yes);
+    qBox.appendChild(no);
   }
 
   //Switch statment to select the right function to display the question.
@@ -233,5 +257,5 @@ backBtn.textContent = 'Close';
 backBtn.addEventListener('click', () => {
   gameArea.removeChild(help);
   gameArea.appendChild(start);
-})
+});
 help.appendChild(backBtn);
