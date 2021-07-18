@@ -44,6 +44,7 @@ const questioning = (() => {
       marking(question, answerInput.value);
     });
     gameArea.appendChild(answerBtn);
+    answerBtn.classList.add('button');
   }
   
   function displayMultipleQ(question) {
@@ -60,6 +61,7 @@ const questioning = (() => {
         marking(question, answer);
       });
       gameArea.appendChild(answerBtn);
+      answerBtn.classList.add('button');
     });
   }
 
@@ -76,6 +78,7 @@ const questioning = (() => {
       marking(question, 'Yes');
     });
     gameArea.appendChild(yes);
+    yes.classList.add('button');
 
     const no = document.createElement('button');
     no.textContent = 'No';
@@ -83,6 +86,7 @@ const questioning = (() => {
       marking(question, 'No');
     });
     gameArea.appendChild(no);
+    no.classList.add('button');
   }
 
   //Switch statment to select the right function to display the question.
@@ -124,6 +128,7 @@ const questioning = (() => {
       winLose.winLose(e.target);
     });
     gameArea.appendChild(nextBtn);
+    nextBtn.classList.add('button');
   }
 
   // If answer is wrong.
@@ -143,6 +148,7 @@ const questioning = (() => {
       winLose.winLose(e.target);
     });
     gameArea.appendChild(nextBtn);
+    nextBtn.classList.add('button');
   }
   return {displayQ}
 })();
@@ -206,12 +212,14 @@ startBtn.addEventListener('click', () => {
   questioning.displayQ();
 });
 start.appendChild(startBtn);
+startBtn.classList.add('button');
 const helpBtn = document.createElement('button');
 helpBtn.textContent = 'Help';helpBtn.addEventListener('click', () => {
   gameArea.removeChild(start);
   gameArea.appendChild(help);
 });
 start.appendChild(helpBtn);
+helpBtn.classList.add('button');
 
 //For on page load.
 gameArea.appendChild(start);
@@ -235,3 +243,4 @@ backBtn.addEventListener('click', () => {
   gameArea.appendChild(start);
 })
 help.appendChild(backBtn);
+backBtn.classList.add('button');
