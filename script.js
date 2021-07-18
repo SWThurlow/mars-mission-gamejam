@@ -20,63 +20,88 @@ function pickQ() {
 }
 
 function displayQ(question) {
+  const questionAndDetails = document.createElement("details");
   const qInfo = document.createElement('p');
-  const asking = document.createElement('p');
+  const questionText = document.createElement('summary'); 
+
+  qInfo.classList.add("qInfo");
+  questionText.classList.add("questionText");
+  questionAndDetails.classList.add("questionContainer");
+
   function displayInputQ() {
-    qInfo.textContent = question.info;
-    qBox.appendChild(qInfo);
-
-    asking.textContent = question.question;
-    qBox.appendChild(asking);
-
-    const answerInput = document.createElement('input');
-    answerInput.classList.add('answer');
-    qBox.appendChild(answerInput);
-
+    const answerInput = document.createElement('input'); 
     const answerBtn = document.createElement('button');
+
+    qInfo.textContent = question.info;
+    questionText.textContent = question.question;
+
+    questionAndDetails.appendChild(questionText);
+    questionAndDetails.appendChild(qInfo);    
+
+    answerInput.classList.add('answer');
+    answerBtn.classList.add("submitBtn");
     answerBtn.textContent = 'Answer';
+
     answerBtn.addEventListener('click', () => {
       marking(question, answerInput.value);
-    });
+    });    
+
+    qBox.appendChild(questionAndDetails);
+    qBox.appendChild(answerInput);    
     qBox.appendChild(answerBtn);
   }
 
-  function displayMultipleQ() {
-    qInfo.textContent = question.info;
-    qBox.appendChild(qInfo);
+  function displayMultipleQ() {      
+    const answerBtnContainer = document.createElement('div');
 
-    asking.textContent = question.question;
-    qBox.appendChild(asking);
+    qInfo.textContent = question.info;
+    questionText.textContent = question.question;
+
+    questionAndDetails.appendChild(questionText);
+    questionAndDetails.appendChild(qInfo); 
+
+    qBox.appendChild(questionAndDetails);
 
     question.choices.forEach(answer => {
       const answerBtn = document.createElement('button');
+      answerBtn.classList.add("answerBtn");
+      answerBtnContainer.classList.add("answerBtnContainer");
+
       answerBtn.textContent = answer;
       answerBtn.addEventListener('click', () => {
         marking(question, answer);
       });
-      qBox.appendChild(answerBtn);
+      answerBtnContainer.appendChild(answerBtn);
     });
+
+    qBox.appendChild(answerBtnContainer);
+
   }
 
   function displayYesNoQ() {
     qInfo.textContent = question.info;
-    qBox.appendChild(qInfo);
+    questionText.textContent = question.question;
 
-    asking.textContent = question.question;
-    qBox.appendChild(asking);
+    questionAndDetails.appendChild(qInfo);
+    questionAndDetails.appendChild(questionText);
+    qBox.appendChild(questionAndDetails);
 
     const yes = document.createElement('button');
+    const no = document.createElement('button');
+    yes.classList.add("answerBtn");
+    no.classList.add("answerBtn");
+
     yes.textContent = 'Yes';
+    no.textContent = 'No';
     yes.addEventListener('click', () => {
       marking(question, 'Yes');
     });
-    qBox.appendChild(yes);
-
-    const no = document.createElement('button');
-    no.textContent = 'No';
+    
     no.addEventListener('click', () => {
       marking(question, 'No');
     });
+
+    qBox.appendChild(yes);
     qBox.appendChild(no);
   }
 
