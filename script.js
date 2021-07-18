@@ -39,7 +39,7 @@ function displayQ(question) {
     questionAndDetails.appendChild(qInfo);    
 
     answerInput.classList.add('answer');
-    answerBtn.classList.add("submitBtn");
+    answerBtn.classList.add("submitAnswerBtn");
     answerBtn.textContent = 'Answer';
 
     answerBtn.addEventListener('click', () => {

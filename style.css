@@ -9,8 +9,11 @@
 
 /* CUSTOM PROPS */
 :root {
-  --main-color: #00303F;
-  --secondery-color: #F5F4F4;
+  --main-color: #34344d;
+  --secondery-color: #9eadcf;
+  --tirtiary-color: #5754a8;
+  --text-color: #fff; 
+
   --my-awesome-color: hsla(133, 100%, 50%, 0.781);
   --modal-outer: hsla(0,0%,0%,0.8);
   --modal-inner-bg: hsla(0,0%,100%,1);
@@ -20,8 +23,24 @@
 body {
   /* Testing */
   background-color: var(--main-color);
-  color: var(--secondery-color);
+  color: var(--text-color);
   text-align: center;
+}
+
+.title,
+.sub-title {
+  color: var(--main-color);
+}
+
+.btn {
+  outline: none;
+  border: none;
+  padding: .5rem;  
+  margin: 1rem 0;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: left;
 }
 
 /*=================
@@ -44,9 +63,9 @@ body {
 }
 
 .modal-start-inner, .modal-help-inner {
-  background: var(--modal-inner-bg);
-  height: 80vh;
-  width: 80vw;
+  background: var(--secondery-color);
+/*  height: 80vh;*/
+  width: 50vw;
   padding: 2rem;
   margin: 10vh auto;
   border-radius: 5px;
@@ -67,20 +86,25 @@ body {
 }
 
 .modal-btn {
-  padding: 10px;
-  border-radius: 5px;
+  padding: .5rem 1rem; 
+  background: var(--main-color);
+  color: var(--text-color);
 }
 
+.modal-btn:hover {
+  background: var(--tirtiary-color);
+  color: var(--text-color); 
+}
 
 /*question display styles*/
 
 .questionBox {
   width: 350px;
   margin: auto;
-
   padding: 1rem;
   margin-top: 1rem;
-  background: #F05454;
+  background: var(--tirtiary-color);
+  color: #fff;  
 }
 
 .questionContainer {
@@ -90,30 +114,35 @@ body {
 
 /*input questions*/
 
-.questionText{
+.questionText {
   font-weight: bold;
   line-height: 1.2;
   padding-bottom: 1rem;
 }
 
-/*.answer,
-.answerBtn {
-  height: 25px;
+.submitAnswerBtn,
+.answer {
   outline: none;
   border: none;
-  padding-left: .5rem;
-}*/
+  padding: .5rem;
+}
 
+.submitAnswerBtn {
+  background: var(--main-color);
+  color: var(--text-color); 
+  padding: .5rem 1rem;  
+}
 
-/*.answerBtn {
-  background-color: lightgreen;
-  padding: 0 .5rem;
-}*/
+.submitAnswerBtn:hover {
+  cursor: pointer;
+}
 
-/*multiple qustion*/
+/*multiple qustion and yes no question*/
 .answerBtnContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .answerBtn { 
@@ -122,15 +151,13 @@ body {
   padding: .5rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
-  width: auto;
   cursor: pointer;
-  background: lightgreen;
   font-weight: bold;
   text-align: left;
 }
 
 .answerBtn:hover {
-  background: gray;
+  background: var(--main-color);
   color: #fff;
 }
 
