@@ -47,7 +47,7 @@ body {
  =  START MODAL   =                                               
  ==================*/
  .modal-start-outer {
-  background: var(--modal-outer);
+  background: var(--main-color);
  }
 
 .modal-start-outer, .modal-help-outer {
