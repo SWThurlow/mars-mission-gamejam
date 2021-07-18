@@ -22,17 +22,18 @@ const questioning = (() => {
     return selected;
   }
 
-  function displayQ(question) {
-    const questionAndDetails = document.createElement("details");
-    const qInfo = document.createElement('p');
-    const questionText = document.createElement('summary'); 
+  //Variables for displaying questions needed in multiple functions.
+  const questionAndDetails = document.createElement("details");
+  const qInfo = document.createElement('p');
+  const questionText = document.createElement('summary'); 
 
+  function displayQ(question) {
     qInfo.classList.add("qInfo");
     questionText.classList.add("questionText");
     questionAndDetails.classList.add("questionContainer");
   }
 
-  function displayInputQ() {
+  function displayInputQ(question) {
     const answerInput = document.createElement('input'); 
     const answerBtn = document.createElement('button');
 
@@ -50,12 +51,12 @@ const questioning = (() => {
       marking(question, answerInput.value);
     });    
 
-    qBox.appendChild(questionAndDetails);
-    qBox.appendChild(answerInput);    
-    qBox.appendChild(answerBtn);
+    gameArea.appendChild(questionAndDetails);
+    gameArea.appendChild(answerInput);    
+    gameArea.appendChild(answerBtn);
   }
 
-  function displayMultipleQ() {      
+  function displayMultipleQ(question) {      
     const answerBtnContainer = document.createElement('div');
 
     qInfo.textContent = question.info;
@@ -64,7 +65,7 @@ const questioning = (() => {
     questionAndDetails.appendChild(questionText);
     questionAndDetails.appendChild(qInfo); 
 
-    qBox.appendChild(questionAndDetails);
+    gameArea.appendChild(questionAndDetails);
 
     question.choices.forEach(answer => {
       const answerBtn = document.createElement('button');
@@ -78,7 +79,7 @@ const questioning = (() => {
       answerBtnContainer.appendChild(answerBtn);
     });
 
-    qBox.appendChild(answerBtnContainer);
+    gameArea.appendChild(answerBtnContainer);
 
   }
 
@@ -88,7 +89,7 @@ const questioning = (() => {
 
     questionAndDetails.appendChild(qInfo);
     questionAndDetails.appendChild(questionText);
-    qBox.appendChild(questionAndDetails);
+    gameArea.appendChild(questionAndDetails);
 
     const yes = document.createElement('button');
     const no = document.createElement('button');
@@ -105,8 +106,8 @@ const questioning = (() => {
       marking(question, 'No');
     });
 
-    qBox.appendChild(yes);
-    qBox.appendChild(no);
+    gameArea.appendChild(yes);
+    gameArea.appendChild(no);
   }
 
   //Switch statment to select the right function to display the question.
@@ -226,6 +227,7 @@ start.appendChild(startH3);
 const startBtn = document.createElement('button');
 startBtn.textContent = 'Start';
 startBtn.addEventListener('click', () => {
+  console.log('hi');
   gameArea.removeChild(start);
   questioning.displayQ();
 });
