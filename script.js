@@ -241,13 +241,6 @@ function playerStart() {
 
   const launchBtn = document.createElement('button');
   launchBtn.textContent = 'Launch';
-  launchBtn.addEventListener('click', () => {
-    playerName = getName.value;
-    shipName = getShip.value;
-    //animations.launch();
-    [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
-    questioning.displayQ();
-  });
   launch.appendChild(launchBtn);
 
   const rocket = new Image(50, 50);
@@ -257,6 +250,21 @@ function playerStart() {
   const earth = new Image(100, 100);
   earth.src = 'img/earth.svg';
   launch.appendChild(earth);
+
+  launchBtn.addEventListener('click', () => {
+    playerName = getName.value;
+    shipName = getShip.value;
+    launch.removeChild(nameLabel);
+    launch.removeChild(getName);
+    launch.removeChild(shipLabel);
+    launch.removeChild(getShip);
+    launch.removeChild(launchBtn);
+    rocket.classList.add('takeOff');
+    setTimeout(() => {
+      gameArea.removeChild(launch);
+      questioning.displayQ();
+    }, 3000);
+  });
 
   gameArea.appendChild(launch);
 }

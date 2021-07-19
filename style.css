@@ -158,3 +158,17 @@ body {
   color: #fff;
 }
 
+/*Animations*/
+/*For the rocket to take off at the start of the game.*/
+@keyframes takeOff {
+  0% {
+     bottom: -215Px;
+    }
+  100% {
+    bottom: 500px;
+  }
+}
+
+.takeOff {
+  animation: takeOff 3s linear;
+}
