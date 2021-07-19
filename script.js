@@ -219,37 +219,42 @@ const winLose = (() => {
 
 //Getting player and ship name before starting game.
 function playerStart() {
+  const launch = document.createElement('div');
+  launch.classList.add('launch');
+
   const nameLabel = document.createElement('label');
   nameLabel.textContent = 'Captain! What should we call you?';
   nameLabel.setAttribute('for', 'getName');
-  gameArea.appendChild(nameLabel);
+  launch.appendChild(nameLabel);
   const getName = document.createElement('input');
   getName.setAttribute('name', 'getName');
-  gameArea.appendChild(getName);
+  launch.appendChild(getName);
 
   const shipLabel = document.createElement('label');
   shipLabel.textContent = 'What shall we call our ship Captain?'
   shipLabel.setAttribute('for', 'shipName');
-  gameArea.appendChild(shipLabel);
+  launch.appendChild(shipLabel);
   const shipName = document.createElement('input');
   shipName.setAttribute('name', 'shipName');
-  gameArea.appendChild(shipName);
+  launch.appendChild(shipName);
 
   const launchBtn = document.createElement('button');
   launchBtn.textContent = 'Launch';
   launchBtn.addEventListener('click', () => {
-    animations.launch();
+    //animations.launch();
     [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
   });
-  gameArea.appendChild(launchBtn);
+  launch.appendChild(launchBtn);
 
   const rocket = new Image(50, 50);
   rocket.src = 'img/rocket.svg';
-  gameArea.appendChild(rocket);
+  launch.appendChild(rocket);
 
   const earth = new Image(100, 100);
   earth.src = 'img/earth.svg';
-  gameArea.appendChild(earth);
+  launch.appendChild(earth);
+
+  gameArea.appendChild(launch);
 }
 
 //Start screen.
