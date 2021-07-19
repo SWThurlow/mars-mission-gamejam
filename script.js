@@ -189,8 +189,36 @@ const winLose = (() => {
 
 //Getting player and ship name before starting game.
 function playerStart() {
-  const getName = document.createElement('input');
   const nameLabel = document.createElement('label');
+  nameLabel.textContent = 'Captain! What should we call you?';
+  nameLabel.setAttribute('for', 'getName');
+  gameArea.appendChild(nameLabel);
+  const getName = document.createElement('input');
+  getName.setAttribute('name', 'getName');
+  gameArea.appendChild(getName);
+
+  const shipLabel = document.createElement('label');
+  shipLabel.textContent = 'What shall we call our ship Captain?'
+  shipLabel.setAttribute('for', 'shipName');
+  gameArea.appendChild(shipLabel);
+  const shipName = document.createElement('input');
+  shipName.setAttribute('name', 'shipName');
+  gameArea.appendChild(shipName);
+
+  const launchBtn = document.createElement('button');
+  launchBtn.textContent = 'Launch';
+  launchBtn.addEventListener('click', () => {
+    animations.launch();
+    [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
+  });
+
+  const rocket = new Image();
+  rocket.src = 'img/rocket.svg';
+  gameArea.appendChild(rocket);
+
+  const earth = new Image();
+  earth.src = 'img/earth.svg';
+  gameArea.appendChild(earth);
 }
 
 //Start screen.
