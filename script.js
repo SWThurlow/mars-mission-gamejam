@@ -24,7 +24,7 @@ const questioning = (() => {
 
   //Variables for displaying questions needed in multiple functions.
   const questionsBox = document.createElement('div');
-  questionsBox.classList.add('quesitonBox');
+  questionsBox.classList.add('questionBox');
   const questionAndDetails = document.createElement("details");
   questionAndDetails.classList.add("questionContainer");
   const qInfo = document.createElement('p');
