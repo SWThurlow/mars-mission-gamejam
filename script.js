@@ -154,7 +154,6 @@ const questioning = (() => {
       winLose.winLose(e.target);
     });
     gameArea.appendChild(nextBtn);
-    nextBtn.classList.add('button');
   }
 
   // If answer is wrong.
@@ -174,7 +173,6 @@ const questioning = (() => {
       winLose.winLose(e.target);
     });
     gameArea.appendChild(nextBtn);
-    nextBtn.classList.add('button');
   }
   return {displayQ}
 })();
