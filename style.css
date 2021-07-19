@@ -47,15 +47,14 @@ body {
   height: 100%;
 }
 
-.modal-btn {
-  padding: .5rem 1rem; 
-  background: var(--main-color);
-  color: var(--text-color);
-}
+/*Game area*/
 
-.modal-btn:hover {
-  background: var(--tirtiary-color);
-  color: var(--text-color); 
+.gameArea {
+  width: 500px;
+  height: 500px;
+  padding: 20px;
+  margin: 0 auto;
+  background: url(img/stars3.svg);
 }
 
 /*question display styles*/
