@@ -21,7 +21,6 @@
 
 /* TAGS */
 body {
-  /* Testing */
   background-color: var(--main-color);
   color: var(--text-color);
   text-align: center;
@@ -43,57 +42,19 @@ body {
   text-align: left;
 }
 
-/*=================
- =  START MODAL   =                                               
- ==================*/
- .modal-start-outer {
-  background: var(--main-color);
- }
-
-.modal-start-outer, .modal-help-outer {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  /* Hide this modal until we need it */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
+.startScreen {
+  width: 100%;
+  height: 100%;
 }
 
-.modal-start-inner, .modal-help-inner {
-  background: var(--secondery-color);
-/*  height: 80vh;*/
-  width: 50vw;
-  padding: 2rem;
-  margin: 10vh auto;
-  border-radius: 5px;
-  min-height: 200px;
-  transform: translateY(-200%);
-  transition: transform 1s;
-}
+/*Game area*/
 
-.modal-start-outer.open, .modal-help-outer.open {
-  opacity: 1;
-  pointer-events: all;
-
-}
-
-.modal-start-outer.open .modal-start-inner,
-.modal-help-outer.open .modal-help-inner {
-  transform: translateY(0);
-}
-
-.modal-btn {
-  padding: .5rem 1rem; 
-  background: var(--main-color);
-  color: var(--text-color);
-}
-
-.modal-btn:hover {
-  background: var(--tirtiary-color);
-  color: var(--text-color); 
+.gameArea {
+  width: 500px;
+  height: 500px;
+  padding: 20px;
+  margin: 0 auto;
+  background: url(img/stars3.svg);
 }
 
 /*question display styles*/
