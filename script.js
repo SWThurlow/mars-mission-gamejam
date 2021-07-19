@@ -241,12 +241,13 @@ function playerStart() {
     animations.launch();
     [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
   });
+  gameArea.appendChild(launchBtn);
 
-  const rocket = new Image();
+  const rocket = new Image(50, 50);
   rocket.src = 'img/rocket.svg';
   gameArea.appendChild(rocket);
 
-  const earth = new Image();
+  const earth = new Image(100, 100);
   earth.src = 'img/earth.svg';
   gameArea.appendChild(earth);
 }
