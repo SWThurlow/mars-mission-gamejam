@@ -122,3 +122,7 @@ body {
   color: #fff;
 }
 
+/* FUEL METER */
+.fuel-meter {
+  padding: 20px;
+}
