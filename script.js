@@ -187,8 +187,10 @@ const winLose = (() => {
   return {winLose}
 })();
 
-
-
+//Getting player and ship name before starting game.
+function playerStart() {
+  const getName = document.createElement('input');
+}
 
 //Start screen.
 const start = document.createElement('div');
@@ -199,13 +201,15 @@ start.appendChild(startH2);
 const startH3 = document.createElement('h3');
 startH3.textContent = 'Can you command a rocket to Mars?';
 start.appendChild(startH3);
+
 const startBtn = document.createElement('button');
 startBtn.textContent = 'Start';
 startBtn.addEventListener('click', () => {
   gameArea.removeChild(start);
-  questioning.displayQ();
+  playerStart();
 });
 start.appendChild(startBtn);
+
 const helpBtn = document.createElement('button');
 helpBtn.textContent = 'Help';helpBtn.addEventListener('click', () => {
   gameArea.removeChild(start);
