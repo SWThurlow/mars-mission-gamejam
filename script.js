@@ -190,6 +190,7 @@ const winLose = (() => {
 //Getting player and ship name before starting game.
 function playerStart() {
   const getName = document.createElement('input');
+  const nameLabel = document.createElement('label');
 }
 
 //Start screen.
