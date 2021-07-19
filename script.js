@@ -4,9 +4,10 @@ import { questions } from './questions.js';
 // Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');
 
-// To keep track of asked questions. 
-//In global scope to make it easier to use throughout game.
+//Global variables
 const qsAsked = [];
+let playerName;
+let shipName;
 
 // Picking and displaying a random question.
 //Done as an IFFE as most of these fuunctions are just called by each other.
@@ -201,7 +202,7 @@ const winLose = (() => {
       if(right === 2) {
         win();
       } else {
-        questioning.displayQ()
+        questioning.displayQ();
       }
     } else {
       wrong++;
@@ -209,7 +210,7 @@ const winLose = (() => {
       if(wrong === 2) {
         loss();
       } else {
-        questioning.displayQ()
+        questioning.displayQ();
       }
     }
   }
@@ -234,15 +235,18 @@ function playerStart() {
   shipLabel.textContent = 'What shall we call our ship Captain?'
   shipLabel.setAttribute('for', 'shipName');
   launch.appendChild(shipLabel);
-  const shipName = document.createElement('input');
-  shipName.setAttribute('name', 'shipName');
-  launch.appendChild(shipName);
+  const getShip = document.createElement('input');
+  getShip.setAttribute('name', 'shipName');
+  launch.appendChild(getShip);
 
   const launchBtn = document.createElement('button');
   launchBtn.textContent = 'Launch';
   launchBtn.addEventListener('click', () => {
+    playerName = getName.value;
+    shipName = getShip.value;
     //animations.launch();
     [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
+    questioning.displayQ();
   });
   launch.appendChild(launchBtn);
 
