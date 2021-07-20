@@ -145,10 +145,10 @@ const questioning = (() => {
     const expected = question.expectedAnswer;
     if (answer === expected) {
       wellDone();
-      fuelControl.fuelInc();
+      fuelControl.fuelDecCorrect();
     } else {
       keepTrying(question);
-      fuelControl.fuelDec();
+      fuelControl.fuelDecIncorrect();
     }
   }
 
@@ -209,7 +209,7 @@ const winLose = (() => {
     if (target.dataset.correct === 'true') {
       right++;
       [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
-      if (right === 2) {
+      if (right === 6 && fuelControl.checkFuelEmpty()) {
         win();
       } else {
         questioning.displayQ();
@@ -217,7 +217,7 @@ const winLose = (() => {
     } else {
       wrong++;
       [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
-      if (wrong === 2) {
+      if (fuelControl.checkFuelEmpty()) {
         lose();
       } else {
         questioning.displayQ();
@@ -281,32 +281,47 @@ help.appendChild(backBtn);
    ===================================================== */
 
 const fuelControl = (() => {
-  // Set increment/decrement value for right/wrong answer
-  const _fuelMeterInc = 10;
-  const _fuelMeterDec = 15;
+  // Set increment/decrement value for correct/incorrect answer
+  const _fuelChangeCorrect = 12;
+  const _fuelChangeIncorrect = 25;
+  let isFuelEmpty = false;
 
   const fuelMeter = document.getElementById('fuel');
 
   let _fuelMeterValue = fuelMeter.value;
-  const fuelMeterMin = fuelMeter.min;
+  const _fuelMeterMin = fuelMeter.min;
   const _fuelMeterMax = fuelMeter.max;
 
-  const fuelInc = () => {
-    if (_fuelMeterValue >= _fuelMeterMax) {
-      _fuelMeterValue = 100;
-    } else {
-      _fuelMeterValue += _fuelMeterInc;
+  const fuelDecCorrect = () => {
+    if (_fuelMeterValue - _fuelChangeCorrect <= _fuelMeterMin) {
+      isFuelEmpty = true;
+      fuelMeter.value = _fuelMeterMin;
+      return true;
     }
-
+    _fuelMeterValue -= _fuelChangeCorrect;
     fuelMeter.value = _fuelMeterValue;
+    console.log('Corr', _fuelMeterValue);
   };
 
-  const fuelDec = () => {
-    _fuelMeterValue -= _fuelMeterDec;
+  const fuelDecIncorrect = () => {
+    if (_fuelMeterValue - _fuelChangeIncorrect <= _fuelMeterMin) {
+      isFuelEmpty = true;
+      fuelMeter.value = _fuelMeterMin;
+      return true;
+    }
+    _fuelMeterValue -= _fuelChangeIncorrect;
     fuelMeter.value = _fuelMeterValue;
+    console.log('Inc', _fuelMeterValue);
   };
 
   const getFuelValue = () => _fuelMeterValue;
 
-  return { fuelMeterMin, fuelInc, fuelDec, getFuelValue };
+  const checkFuelEmpty = () => isFuelEmpty;
+
+  return {
+    fuelDecCorrect,
+    fuelDecIncorrect,
+    getFuelValue,
+    checkFuelEmpty,
+  };
 })();
