@@ -170,5 +170,5 @@ body {
 }
 
 .takeOff {
-  animation: takeOff 3s linear;
+  animation: takeOff 5s cubic-bezier(.63,.3,.46,.92);
 }
