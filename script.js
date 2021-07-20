@@ -4,9 +4,10 @@ import { questions } from './questions.js';
 // Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');
 
-// To keep track of asked questions. 
-//In global scope to make it easier to use throughout game.
+//Global variables
 const qsAsked = [];
+let playerName;
+let shipName;
 
 // Picking and displaying a random question.
 //Done as an IFFE as most of these fuunctions are just called by each other.
@@ -201,7 +202,7 @@ const winLose = (() => {
       if(right === 2) {
         win();
       } else {
-        questioning.displayQ()
+        questioning.displayQ();
       }
     } else {
       wrong++;
@@ -209,7 +210,7 @@ const winLose = (() => {
       if(wrong === 2) {
         loss();
       } else {
-        questioning.displayQ()
+        questioning.displayQ();
       }
     }
   }
@@ -217,8 +218,56 @@ const winLose = (() => {
   return {winLose}
 })();
 
+//Getting player and ship name before starting game.
+function playerStart() {
+  const launch = document.createElement('div');
+  launch.classList.add('launch');
 
+  const nameLabel = document.createElement('label');
+  nameLabel.textContent = 'Captain! What should we call you?';
+  nameLabel.setAttribute('for', 'getName');
+  launch.appendChild(nameLabel);
+  const getName = document.createElement('input');
+  getName.setAttribute('name', 'getName');
+  launch.appendChild(getName);
 
+  const shipLabel = document.createElement('label');
+  shipLabel.textContent = 'What shall we call our ship Captain?'
+  shipLabel.setAttribute('for', 'shipName');
+  launch.appendChild(shipLabel);
+  const getShip = document.createElement('input');
+  getShip.setAttribute('name', 'shipName');
+  launch.appendChild(getShip);
+
+  const launchBtn = document.createElement('button');
+  launchBtn.textContent = 'Launch';
+  launch.appendChild(launchBtn);
+
+  const rocket = new Image(50, 50);
+  rocket.src = 'img/rocket.svg';
+  launch.appendChild(rocket);
+
+  const earth = new Image(100, 100);
+  earth.src = 'img/earth.svg';
+  launch.appendChild(earth);
+
+  launchBtn.addEventListener('click', () => {
+    playerName = getName.value;
+    shipName = getShip.value;
+    launch.removeChild(nameLabel);
+    launch.removeChild(getName);
+    launch.removeChild(shipLabel);
+    launch.removeChild(getShip);
+    launch.removeChild(launchBtn);
+    rocket.classList.add('takeOff');
+    setTimeout(() => {
+      gameArea.removeChild(launch);
+      questioning.displayQ();
+    }, 3000);
+  });
+
+  gameArea.appendChild(launch);
+}
 
 //Start screen.
 const start = document.createElement('div');
@@ -229,13 +278,15 @@ start.appendChild(startH2);
 const startH3 = document.createElement('h3');
 startH3.textContent = 'Can you command a rocket to Mars?';
 start.appendChild(startH3);
+
 const startBtn = document.createElement('button');
 startBtn.textContent = 'Start';
 startBtn.addEventListener('click', () => {
   gameArea.removeChild(start);
-  questioning.displayQ();
+  playerStart();
 });
 start.appendChild(startBtn);
+
 const helpBtn = document.createElement('button');
 helpBtn.textContent = 'Help';helpBtn.addEventListener('click', () => {
   gameArea.removeChild(start);
