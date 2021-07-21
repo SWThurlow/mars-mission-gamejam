@@ -172,3 +172,8 @@ body {
 .takeOff {
   animation: takeOff 5s cubic-bezier(.63,.3,.46,.92);
 }
+
+/* FUEL METER */
+.fuel-meter {
+  padding: 20px;
+}

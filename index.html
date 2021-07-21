@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Mars Mission | Game Jam | The Odin Project</title>
-      <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mars Mission | Game Jam | The Odin Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
-      <h1>This is where the magic happens!</h1>
-      <section class="gameArea">
-      </section>
+<body>
+  <h1>This is where the magic happens!</h1>
+  <section class="gameArea">
+  </section>
 
-    <script src="script.js" type="module"></script>
-  </body>
+  <div class="fuel-meter">
+    <label for="fuel">Fuel level:</label>
+
+    <meter id="fuel" min="0" max="100" low="33" high="66" optimum="80" value="100" title="Fuel %">
+    </meter>
+  </div>
+
+  <script src="script.js" type="module"></script>
+</body>
 
 </html>

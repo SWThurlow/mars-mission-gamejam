@@ -72,6 +72,7 @@ const questions = [
       'Between Earth and Venus',
       'Between Jupiter and Saturn',
       'Between Earth and Mars',
+      'Between Mars and Jupiter',
     ],
     explanation:
       'The asteroid belt is found in a region between the planets Mars and Jupiter.',
@@ -82,7 +83,12 @@ const questions = [
     question: 'What are comets mostly made of?',
     questionType: 'multiple',
     expectedAnswer: 'Dirty ice and dust',
-    choices: ['Rusty metal', 'Hot, liquid rock', 'Poisonous liquid'],
+    choices: [
+      'Rusty metal',
+      'Dirty ice and dust',
+      'Hot, liquid rock',
+      'Poisonous liquid',
+    ],
     explanation:
       'Comets are mostly made of snow, ice and dust along with some frozen gases.',
   },
