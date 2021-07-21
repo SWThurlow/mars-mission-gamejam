@@ -209,7 +209,7 @@ const winLose = (() => {
     if (target.dataset.correct === 'true') {
       right++;
       [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
-      if (right === 6 && fuelControl.checkFuelEmpty()) {
+      if (right === 6) {
         win();
       } else {
         questioning.displayQ();
@@ -292,6 +292,7 @@ const fuelControl = (() => {
   const _fuelMeterMin = fuelMeter.min;
   const _fuelMeterMax = fuelMeter.max;
 
+  // Decrease fuel for correct answer
   const fuelDecCorrect = () => {
     if (_fuelMeterValue - _fuelChangeCorrect <= _fuelMeterMin) {
       isFuelEmpty = true;
@@ -300,9 +301,9 @@ const fuelControl = (() => {
     }
     _fuelMeterValue -= _fuelChangeCorrect;
     fuelMeter.value = _fuelMeterValue;
-    console.log('Corr', _fuelMeterValue);
   };
 
+  // Decrease fuel for correct answer
   const fuelDecIncorrect = () => {
     if (_fuelMeterValue - _fuelChangeIncorrect <= _fuelMeterMin) {
       isFuelEmpty = true;
@@ -311,7 +312,6 @@ const fuelControl = (() => {
     }
     _fuelMeterValue -= _fuelChangeIncorrect;
     fuelMeter.value = _fuelMeterValue;
-    console.log('Inc', _fuelMeterValue);
   };
 
   const getFuelValue = () => _fuelMeterValue;
