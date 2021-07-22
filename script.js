@@ -9,6 +9,22 @@ const qsAsked = [];
 let playerName;
 let shipName;
 
+//The fuel meter.
+const fuelTank = document.createElement('div');
+fuelTank.setAttribute('class', 'fuel-meter');
+const fuelLabel = document.createElement('label');
+fuelLabel.setAttribute('for', 'fuel');
+fuelLabel.textContent = 'Fuel:'
+fuelTank.appendChild(fuelLabel);
+const fuelMeter = document.createElement('meter');
+fuelMeter.setAttribute('id', 'fuel');
+fuelMeter.setAttribute('min', '0');
+fuelMeter.setAttribute('max', '100');
+fuelMeter.setAttribute('value', '100');
+fuelMeter.setAttribute('optimum', '80');
+fuelMeter.setAttribute('title', 'Fuel %');
+fuelTank.appendChild(fuelMeter);
+
 // Picking and displaying a random question.
 // Done as an IFFE as most of these fuunctions are just called by each other.
 const questioning = (() => {
@@ -282,6 +298,7 @@ function playerStart() {
     rocket.classList.add('takeOff');
     setTimeout(() => {
       gameArea.removeChild(launch);
+      gameArea.appendChild(fuelTank);
       questioning.displayQ();
     }, 3000);
   });
@@ -348,8 +365,6 @@ const fuelControl = (() => {
   const _fuelChangeCorrect = 12;
   const _fuelChangeIncorrect = 25;
   let isFuelEmpty = false;
-
-  const fuelMeter = document.getElementById('fuel');
 
   let _fuelMeterValue = fuelMeter.value;
   const _fuelMeterMin = fuelMeter.min;

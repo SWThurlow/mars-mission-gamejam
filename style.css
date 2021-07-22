@@ -123,6 +123,13 @@ button:hover {
   bottom: -100px;
 }
 
+/*Fuel tank.
+
+.fuel-meter {
+  transform: rotate(-90deg);
+  width: 100%;
+}
+
 /*question display styles*/
 
 .questionBox {
@@ -181,9 +188,6 @@ button:hover {
   cursor: pointer;
   font-weight: bold;
   text-align: left;
-<<<<<<< HEAD
-}
-=======
 }
 
 /*Animations*/
@@ -200,4 +204,3 @@ button:hover {
 .takeOff {
   animation: takeOff 3s linear;
 } 
->>>>>>> 2befc39a9e62a628f182cf2ee96e8f0699f7535f
