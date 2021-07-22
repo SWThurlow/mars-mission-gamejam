@@ -3,7 +3,7 @@ import { questions } from './questions.js';
 // Import win lose logic.
 import { winLose } from './winLose.js';
 // Importing all the fuel controls and elements.
-import { fuelTank, fuelControl } from './fuel.js';
+import { fuelControl } from './fuel.js';
 
 // Retrieving DOM elements.
 const gamePlay = document.querySelector('.game-play');

@@ -1,7 +1,7 @@
 // Importing all the fuel controls and elements.
 import { fuelTank, fuelControl } from './fuel.js';
 // Import question display. 
-import { questioning, questionsBox } from './qPicker.js';
+import { questioning } from './qPicker.js';
 
 // Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');

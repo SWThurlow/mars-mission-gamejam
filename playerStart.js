@@ -1,7 +1,7 @@
 //Importing the fuel tank so that it can be attached to the game area.
 import { fuelTank } from './fuel.js';
 // Import question display. 
-import { questioning, questionsBox } from './qPicker.js';
+import { questioning } from './qPicker.js';
 
 // Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');
