@@ -3,7 +3,7 @@ const fuelTank = document.createElement('div');
 fuelTank.setAttribute('class', 'fuel-meter');
 const fuelLabel = document.createElement('label');
 fuelLabel.setAttribute('for', 'fuel');
-fuelLabel.textContent = 'Fuel:'
+fuelLabel.innerHTML = 'Fuel:'
 fuelTank.appendChild(fuelLabel);
 const fuelMeter = document.createElement('meter');
 fuelMeter.setAttribute('id', 'fuel');
