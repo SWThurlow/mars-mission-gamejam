@@ -6,7 +6,7 @@ import { winLose } from './winLose.js';
 import { fuelTank, fuelControl } from './fuel.js';
 
 // Retrieving DOM elements.
-const gameArea = document.querySelector('.gameArea');
+const gamePlay = document.querySelector('.game-play');
 
 // Global variables
 const qsAsked = [];
@@ -134,7 +134,7 @@ const questioning = (() => {
   // Switch statment to select the right function to display the question.
   // Is wrapped in a statement to call pickQ() as a default argument and mean it can be called in the global scope (in the game function).
   function displayQ(question = pickQ()) {
-    gameArea.appendChild(questionsBox);
+    gamePlay.appendChild(questionsBox);
     switch (question.questionType) {
       case 'input':
         displayInputQ(question);
@@ -165,36 +165,36 @@ const questioning = (() => {
 
   // If answer is correct.
   function wellDone() {
-    gameArea.removeChild(questionsBox);
+    gamePlay.removeChild(questionsBox);
     const wellDoneMsg = document.createElement('p');
     wellDoneMsg.textContent = "That's Correct! Well Done!";
-    gameArea.appendChild(wellDoneMsg);
+    gamePlay.appendChild(wellDoneMsg);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'true');
     nextBtn.addEventListener('click', e => {
       winLose.winLose(e.target);
     });
-    gameArea.appendChild(nextBtn);
+    gamePlay.appendChild(nextBtn);
   }
 
   // If answer is wrong.
   function keepTrying(question) {
-    [...gameArea.childNodes].forEach(child => gameArea.removeChild(child));
+    [...gamePlay.childNodes].forEach(child => gamePlay.removeChild(child));
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
       "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
-    gameArea.appendChild(keepTrying);
+    gamePlay.appendChild(keepTrying);
     const explanation = document.createElement('p');
     explanation.textContent = question.explanation;
-    gameArea.appendChild(explanation);
+    gamePlay.appendChild(explanation);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'false');
     nextBtn.addEventListener('click', e => {
       winLose.winLose(e.target);
     });
-    gameArea.appendChild(nextBtn);
+    gamePlay.appendChild(nextBtn);
   }
   return { displayQ };
 })();

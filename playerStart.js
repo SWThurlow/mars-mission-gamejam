@@ -3,8 +3,10 @@ import { fuelTank } from './fuel.js';
 // Import question display. 
 import { questioning, questionsBox } from './qPicker.js';
 
-// Retrieving the game area so that playerStart can use it.
+// Retrieving DOM elements.
 const gameArea = document.querySelector('.gameArea');
+const gamePlay = document.querySelector('.game-play');
+const fuelDisplay = document.querySelector('.fuel-display');
 
 // Declaring global variables here so they can be exported and 
 //used once playerStart has set values to them.
@@ -54,13 +56,14 @@ function playerStart() {
       launch.removeChild(launchBtn);
       rocket.classList.add('takeOff');
       setTimeout(() => {
-        gameArea.removeChild(launch);
-        gameArea.appendChild(fuelTank);
+        gamePlay.removeChild(launch);
+        gameArea.style.cssText = 'grid-template-columns: 10% 90%;';
+        fuelDisplay.appendChild(fuelTank);
         questioning.displayQ();
       }, 3000);
     });
   
-    gameArea.appendChild(launch);
+    gamePlay.appendChild(launch);
 }
 
 export { playerStart, playerName, shipName }

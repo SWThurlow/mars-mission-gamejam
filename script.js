@@ -12,7 +12,7 @@ import { winLose } from './winLose.js';
 import { questioning, questionsBox } from './qPicker.js';
 
 // Retrieving DOM elements.
-const gameArea = document.querySelector('.gameArea');
+const gamePlay = document.querySelector('.game-play');
 
 // For on page load.
-gameArea.appendChild(start);
+gamePlay.appendChild(start);

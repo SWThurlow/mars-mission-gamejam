@@ -2,7 +2,7 @@
 import { playerStart} from './playerStart.js';
 
 // Retrieving DOM elements.
-const gameArea = document.querySelector('.gameArea');
+const gamePlay = document.querySelector('.game-play');
 
 //Start screen.
 const start = document.createElement('div');
@@ -17,7 +17,7 @@ start.appendChild(startH3);
 const startBtn = document.createElement('button');
 startBtn.textContent = 'Start';
 startBtn.addEventListener('click', () => {
-  gameArea.removeChild(start);
+  gamePlay.removeChild(start);
   playerStart();
 });
 start.appendChild(startBtn);
@@ -25,8 +25,8 @@ start.appendChild(startBtn);
 const helpBtn = document.createElement('button');
 helpBtn.textContent = 'Help';
 helpBtn.addEventListener('click', () => {
-  gameArea.removeChild(start);
-  gameArea.appendChild(help);
+  gamePlay.removeChild(start);
+  gamePlay.appendChild(help);
 });
 start.appendChild(helpBtn);
 
@@ -47,8 +47,8 @@ help.appendChild(gameInstructions);
 const backBtn = document.createElement('button');
 backBtn.textContent = 'Close';
 backBtn.addEventListener('click', () => {
-  gameArea.removeChild(help);
-  gameArea.appendChild(start);
+  gamePlay.removeChild(help);
+  gamePlay.appendChild(start);
 });
 help.appendChild(backBtn);
 

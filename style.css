@@ -59,6 +59,8 @@ button:hover {
 /*Game area*/
 
 .gameArea {
+  display: grid;
+  grid-template-columns: 0% 100%;
   width: 500px;
   height: 500px;
   margin: 0 auto;
