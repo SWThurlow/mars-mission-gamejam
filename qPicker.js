@@ -165,17 +165,16 @@ const questioning = (() => {
 
   // If answer is correct.
   function wellDone() {
-    gamePlay.removeChild(questionsBox);
     const wellDoneMsg = document.createElement('p');
     wellDoneMsg.textContent = "That's Correct! Well Done!";
-    gamePlay.appendChild(wellDoneMsg);
+    questionsBox.appendChild(wellDoneMsg);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'true');
     nextBtn.addEventListener('click', e => {
       winLose.winLose(e.target);
     });
-    gamePlay.appendChild(nextBtn);
+    questionsBox.appendChild(nextBtn);
   }
 
   // If answer is wrong.
@@ -184,17 +183,17 @@ const questioning = (() => {
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
       "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
-    gamePlay.appendChild(keepTrying);
+      questionsBox.appendChild(keepTrying);
     const explanation = document.createElement('p');
     explanation.textContent = question.explanation;
-    gamePlay.appendChild(explanation);
+    questionsBox.appendChild(explanation);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'false');
     nextBtn.addEventListener('click', e => {
       winLose.winLose(e.target);
     });
-    gamePlay.appendChild(nextBtn);
+    questionsBox.appendChild(nextBtn);
   }
   return { displayQ };
 })();
