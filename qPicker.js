@@ -132,7 +132,8 @@ const questioning = (() => {
   }
 
   // Switch statment to select the right function to display the question.
-  // Is wrapped in a statement to call pickQ() as a default argument and mean it can be called in the global scope (in the game function).
+  // Is wrapped in a statement to call pickQ() as a default argument 
+  // and mean it can be called in the global scope (in the game function).
   function displayQ(question = pickQ()) {
     gamePlay.appendChild(questionsBox);
     switch (question.questionType) {
@@ -172,6 +173,7 @@ const questioning = (() => {
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'true');
     nextBtn.addEventListener('click', e => {
+      [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
       winLose.winLose(e.target);
     });
     questionsBox.appendChild(nextBtn);
@@ -179,7 +181,6 @@ const questioning = (() => {
 
   // If answer is wrong.
   function keepTrying(question) {
-    [...gamePlay.childNodes].forEach(child => gamePlay.removeChild(child));
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
       "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
@@ -191,6 +192,7 @@ const questioning = (() => {
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'false');
     nextBtn.addEventListener('click', e => {
+      [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
       winLose.winLose(e.target);
     });
     questionsBox.appendChild(nextBtn);
