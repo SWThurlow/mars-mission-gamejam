@@ -54,6 +54,15 @@ const questioning = (() => {
       marking(question, answerInput.value);
     });
 
+    //Listening for the enter key so that answer can be given without the mouse.
+    window.addEventListener('keydown', (e) => {
+      console.log(e)
+      if(e.key === 'Enter'){
+        [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
+        marking(question, answerInput.value);
+      }
+    });
+
     questionsBox.appendChild(questionAndDetails);
     questionsBox.appendChild(answerInput);
     questionsBox.appendChild(answerBtn);
