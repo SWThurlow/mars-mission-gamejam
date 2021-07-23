@@ -55,6 +55,10 @@ function playerStart() {
       launch.removeChild(getShip);
       launch.removeChild(launchBtn);
       rocket.classList.add('takeOff');
+
+      let rocketLaunch = new Audio('./audio/SFB-rocket.mp3');
+      rocketLaunch.play();
+
       setTimeout(() => {
         gamePlay.removeChild(launch);
         gameArea.style.cssText = 'grid-template-columns: 10% 90%;';
