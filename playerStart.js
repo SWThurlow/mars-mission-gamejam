@@ -25,9 +25,9 @@ function playerStart() {
     const getName = document.createElement('input');
     getName.setAttribute('name', 'getName');
     launch.appendChild(getName);
-  
+
     const shipLabel = document.createElement('label');
-    shipLabel.textContent = 'What shall we call our ship Captain?'
+    shipLabel.textContent = 'What shall we call our ship, Captain?'
     shipLabel.setAttribute('for', 'shipName');
     launch.appendChild(shipLabel);
     const getShip = document.createElement('input');
@@ -37,6 +37,16 @@ function playerStart() {
     const launchBtn = document.createElement('button');
     launchBtn.textContent = 'Launch';
     launch.appendChild(launchBtn);
+
+    //disable launch button until player and ship name is entered;
+    launchBtn.setAttribute('disabled', '');
+    document.addEventListener('input', function(event) {
+      const nameTest = getName.value.length;
+      const shipTest = getShip.value.length;
+      if (nameTest >= 1 && shipTest >= 1 ) {
+        launchBtn.removeAttribute('disabled');
+      } 
+    })
   
     const rocket = new Image(50, 50);
     rocket.src = 'img/rocket.svg';
