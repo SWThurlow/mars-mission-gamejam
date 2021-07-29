@@ -23,6 +23,7 @@ const winLose = (() => {
       winMsg.setAttribute('class', 'winMsg');
       winMsg.textContent = `Congratulations Captain ${playerName}! You managed to get the ${shipName} and it's crew it to Mars!`;
       gamePlay.appendChild(winMsg);
+      
       setTimeout(() => {
         const playAgain = document.createElement('button');
         playAgain.textContent = 'Play Again';
@@ -31,7 +32,6 @@ const winLose = (() => {
           gamePlay.appendChild(start);
           right = 0;
           qsAsked.splice(0);
-          console.log(gamePlay.childNodes, qsAsked);
         });
         gamePlay.appendChild(playAgain);
       }, 2000)
@@ -43,6 +43,18 @@ const winLose = (() => {
       const loseMsg = document.createElement('p');
       loseMsg.textContent = `Ohh NO! Captain ${playerName} we've ran out of fuel! A crew from Earth should come and  get the ${shipName} and it's crew then we will be able to try again.`;
       gamePlay.appendChild(loseMsg);
+      
+      setTimeout(() => {
+        const playAgain = document.createElement('button');
+        playAgain.textContent = 'Play Again';
+        playAgain.addEventListener('click', () => {
+          [...gamePlay.childNodes].forEach(child => gamePlay.removeChild(child));
+          gamePlay.appendChild(start);
+          right = 0;
+          qsAsked.splice(0);
+        });
+        gamePlay.appendChild(playAgain);
+      }, 2000)
     }
   
     function winLose(target) {
