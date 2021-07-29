@@ -41,7 +41,9 @@ const winLose = (() => {
       fuelDisplay.removeChild(fuelTank);
       gameArea.style.cssText = 'grid-template-columns: 0% 100%;';
       const loseMsg = document.createElement('p');
-      loseMsg.textContent = `Ohh NO! Captain ${playerName}, we've ran out of fuel! A crew from Earth should come and  get the ${shipName} and its crew then we will be able to try again.`;
+      loseMsg.textContent = `Ohh NO! Captain ${playerName} we've ran out of fuel! A crew from Earth should come and  get the ${shipName} and its crew then we will be able to try again.`;
+      loseMsg.setAttribute('class', 'loseMsg');
+      loseMsg.textContent = `Ohh NO! Captain ${playerName} we've ran out of fuel! A crew from Earth should come and  get the ${shipName} and its crew then we will be able to try again.`;
       gamePlay.appendChild(loseMsg);
       
       setTimeout(() => {
