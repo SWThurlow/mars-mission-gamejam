@@ -37,6 +37,17 @@ function playerStart() {
     const launchBtn = document.createElement('button');
     launchBtn.textContent = 'Launch';
     launch.appendChild(launchBtn);
+
+    launchBtn.setAttribute('disabled', '');
+    document.addEventListener('input', function(event) {
+      const nameTest = getName.value.length;
+      const shipTest = getShip.value.length;
+      if (nameTest >= 2 && shipTest >= 2) {
+        launchBtn.removeAttribute('disabled');
+        } else {
+          launchBtn.setAttribute('disabled', '');
+        }
+     })
   
     const rocket = new Image(50, 50);
     rocket.src = 'img/rocket.svg';
