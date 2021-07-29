@@ -21,7 +21,7 @@ const winLose = (() => {
       gameArea.style.cssText = 'grid-template-columns: 0% 100%;';
       const winMsg = document.createElement('p');
       winMsg.setAttribute('class', 'winMsg');
-      winMsg.textContent = `Congratulations Captain ${playerName}! You managed to get the ${shipName} and it's crew it to Mars!`;
+      winMsg.textContent = `Congratulations, Captain ${playerName}! You managed to get the ${shipName} and its crew it to Mars!`;
       gamePlay.appendChild(winMsg);
       
       setTimeout(() => {
@@ -41,7 +41,7 @@ const winLose = (() => {
       fuelDisplay.removeChild(fuelTank);
       gameArea.style.cssText = 'grid-template-columns: 0% 100%;';
       const loseMsg = document.createElement('p');
-      loseMsg.textContent = `Ohh NO! Captain ${playerName} we've ran out of fuel! A crew from Earth should come and  get the ${shipName} and it's crew then we will be able to try again.`;
+      loseMsg.textContent = `Ohh NO! Captain ${playerName}, we've ran out of fuel! A crew from Earth should come and  get the ${shipName} and its crew then we will be able to try again.`;
       gamePlay.appendChild(loseMsg);
       
       setTimeout(() => {
