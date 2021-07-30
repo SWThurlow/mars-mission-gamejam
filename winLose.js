@@ -18,10 +18,16 @@ const winLose = (() => {
       const winMsg = document.createElement('p');
       winMsg.textContent = 'Congratulations! You made it to Mars!';
       gamePlay.appendChild(winMsg);
-      //checking img files can be accessed
-      const check = new Image(100, 100);
-      check.src =  "img/mars.svg"
-      gamePlay.appendChild(check);
+      //Rocket landing on Mars
+      gamePlay.classList.add('landing');
+      const mars = new Image(100, 100);
+      mars.src =  "img/mars.svg";
+      gamePlay.appendChild(mars);
+      const rocket = new Image(50,50);
+      rocket.src = "img/rocket.svg";
+      gamePlay.appendChild(rocket);
+      rocket.classList.add('rocketLanding');
+
     }
   
     function lose() {
