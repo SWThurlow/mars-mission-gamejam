@@ -64,7 +64,7 @@ button:hover {
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  background: url(img/stars3.svg);
+  background: url(img/stars3.svg);  
 }
 
 /*Player name and ship name screen.*/
@@ -175,14 +175,14 @@ button:hover {
 .submitAnswerBtn,
 .answer {
   outline: none;
-  border: none;
   padding: .5rem;
 }
 
 .submitAnswerBtn {
   background: var(--main-color);
   color: var(--text-color); 
-  padding: .5rem 1rem;  
+  padding: .5rem 1rem; 
+  border: 3px solid var(--main-color);   
 }
 
 .submitAnswerBtn:hover {
@@ -199,7 +199,6 @@ button:hover {
 
 .answerBtn { 
   outline: none;
-  border: none;
   padding: .5rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
