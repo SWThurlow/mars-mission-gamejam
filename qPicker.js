@@ -50,6 +50,9 @@ const questioning = (() => {
     answerBtn.textContent = 'Answer';
 
     answerBtn.addEventListener('click', () => {
+      if(answerInput.value === "") {
+        return;
+      }
       [...questionsBox.childNodes].forEach(child =>
         questionsBox.removeChild(child)
       );
@@ -59,6 +62,9 @@ const questioning = (() => {
     //Listening for the enter key so that answer can be given without the mouse.
     window.addEventListener('keydown', (e) => {
       if(e.key === 'Enter'){
+        if(answerInput.value === "") {
+          return;
+        }
         [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
         marking(question, answerInput.value);
       }
