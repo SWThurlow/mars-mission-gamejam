@@ -207,6 +207,22 @@ button:hover {
   text-align: left;
 }
 
+/*End Game*/
+/*Win*/
+.winMsg {
+  width: 80%;
+  margin: 100px auto;
+  font-size: 18px;
+
+}
+
+/*Lose*/
+.loseMsg {
+  width: 80%;
+  margin: 100px auto;
+  font-size: 18px;
+}
+
 /*Animations*/
 /*For the rocket to take off at the start of the game.*/
 @keyframes takeOff {

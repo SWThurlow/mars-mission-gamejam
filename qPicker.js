@@ -200,4 +200,4 @@ const questioning = (() => {
   return { displayQ };
 })();
 
-export { questioning, questionsBox }
+export { questioning, questionsBox, qsAsked }
