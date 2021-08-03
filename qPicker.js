@@ -52,11 +52,12 @@ const questioning = (() => {
     answerBtn.addEventListener('click', () => {
       if(answerInput.value === "") {
         return;
+      } else {
+        [...questionsBox.childNodes].forEach(child =>
+          questionsBox.removeChild(child)
+        );
+        marking(question, answerInput.value);
       }
-      [...questionsBox.childNodes].forEach(child =>
-        questionsBox.removeChild(child)
-      );
-      marking(question, answerInput.value);
     });
 
     //Listening for the enter key so that answer can be given without the mouse.
@@ -64,9 +65,10 @@ const questioning = (() => {
       if(e.key === 'Enter'){
         if(answerInput.value === "") {
           return;
-        }
-        [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
+        } else {
+          [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
         marking(question, answerInput.value);
+        }
       }
     });
 

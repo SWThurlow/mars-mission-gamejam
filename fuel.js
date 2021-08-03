@@ -9,7 +9,6 @@ const fuelMeter = document.createElement('meter');
 fuelMeter.setAttribute('id', 'fuel');
 fuelMeter.setAttribute('min', '0');
 fuelMeter.setAttribute('max', '100');
-fuelMeter.setAttribute('value', '100');
 fuelMeter.setAttribute('low', '33');
 fuelMeter.setAttribute('high', '66');
 fuelMeter.setAttribute('optimum', '80');
@@ -38,6 +37,7 @@ const fuelControl = (() => {
     }
     _fuelMeterValue -= _fuelChangeCorrect;
     fuelMeter.value = _fuelMeterValue;
+    console.log(_fuelMeterValue)
   };
 
   // Decrease fuel for correct answer

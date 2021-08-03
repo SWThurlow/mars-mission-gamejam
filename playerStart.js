@@ -74,6 +74,7 @@ function playerStart() {
         gamePlay.removeChild(launch);
         gameArea.style.cssText = 'grid-template-columns: 10% 90%;';
         fuelDisplay.appendChild(fuelTank);
+        fuelTank.childNodes[1].setAttribute('value', '100');
         questioning.displayQ();
       }, 3000);
     });
