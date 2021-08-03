@@ -27,7 +27,7 @@ function playerStart() {
     launch.appendChild(getName);
   
     const shipLabel = document.createElement('label');
-    shipLabel.textContent = 'What shall we call our ship Captain?'
+    shipLabel.textContent = 'What shall we call our ship, Captain?'
     shipLabel.setAttribute('for', 'shipName');
     launch.appendChild(shipLabel);
     const getShip = document.createElement('input');

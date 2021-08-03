@@ -183,7 +183,7 @@ const questioning = (() => {
   function keepTrying(question) {
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
-      "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
+      "Unfortunately, that's not right. Hopefully, this explanation can help you understand more.";
       questionsBox.appendChild(keepTrying);
     const explanation = document.createElement('p');
     explanation.textContent = question.explanation;
