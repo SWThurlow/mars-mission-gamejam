@@ -21,8 +21,21 @@ const winLose = (() => {
       gameArea.style.cssText = 'grid-template-columns: 0% 100%;';
       const winMsg = document.createElement('p');
       winMsg.setAttribute('class', 'winMsg');
-      winMsg.textContent = `Congratulations, Captain ${playerName}! You managed to get the ${shipName} and its crew it to Mars!`;
+      winMsg.textContent = `Congratulations, Captain ${playerName}! You managed to get the ${shipName} and its crew to Mars!`;
       gamePlay.appendChild(winMsg);
+
+      //Mars Landing animation
+      gamePlay.classList.add('landing');
+      const mars = new Image(100, 100);
+      mars.src =  "img/mars.svg";
+      gamePlay.appendChild(mars);
+      const rocket = new Image(50,50);
+      rocket.src = "img/rocket.svg";
+      gamePlay.appendChild(rocket);
+      rocket.classList.add('rocketLanding');
+
+      let rocketLanding = new Audio('./audio/landing-jet-dreamstime.mp3');
+      rocketLanding.play();
       
       setTimeout(() => {
         const playAgain = document.createElement('button');
@@ -34,8 +47,10 @@ const winLose = (() => {
           qsAsked.splice(0);
         });
         gamePlay.appendChild(playAgain);
-      }, 2000)
+      }, 5000)
     }
+    //originally 2000
+
   
     function lose() {
       fuelDisplay.removeChild(fuelTank);
@@ -44,6 +59,13 @@ const winLose = (() => {
       loseMsg.setAttribute('class', 'loseMsg');
       loseMsg.textContent = `Ohh NO! Captain ${playerName}, we've ran out of fuel! A crew from Earth should come and get the ${shipName} and its crew. Then, we will be able to try again.`;
       gamePlay.appendChild(loseMsg);
+
+      //rocket spiralling animation
+      gamePlay.classList.add('landing');
+      const rocket = new Image(50,50);
+      rocket.src = "img/rocket.svg";
+      gamePlay.appendChild(rocket);
+      rocket.classList.add('rocketSpiral');
       
       setTimeout(() => {
         const playAgain = document.createElement('button');
@@ -55,7 +77,7 @@ const winLose = (() => {
           qsAsked.splice(0);
         });
         gamePlay.appendChild(playAgain);
-      }, 2000)
+      }, 8000)
     }
   
     function winLose(target) {
