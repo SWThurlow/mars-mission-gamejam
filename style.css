@@ -25,6 +25,7 @@ html {
 body {
   background-color: var(--main-color);
   color: var(--text-color);
+  text-align: center;
   display: flex;
   flex-direction: column;
 }
@@ -81,17 +82,18 @@ button:hover {
 .gameArea {
   display: grid;
   grid-template-columns: 0% 100%;
-  align-items: center;
-  justify-content: center; 
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  background: url(img/stars3.svg); 
-  text-align: center;  
+  background: url(img/stars3.svg);  
 }
 
 .start {
-  padding: 8rem 0;
+  padding-top: 5rem;
+}
+
+.start h2, h3 {
+  padding-bottom: 1rem;
 }
 
 /*game help*/
@@ -102,6 +104,7 @@ button:hover {
 
 .endMsg {
   font-size: 2rem;
+  padding: 10rem 0; 
 }
 
 /*Player name and ship name screen.*/
@@ -123,7 +126,6 @@ button:hover {
   grid-area: nameLabel;
   background: var(--main-color);
   font-size: 18px;
-  text-align: left;
 }
 
 .launch input[name="getName"] {
@@ -134,7 +136,6 @@ button:hover {
   grid-area: getShip;
   background: var(--main-color);
   font-size: 18px;
-  text-align: left;
 }
 
 .launch input[name="ShipName"] {
@@ -183,7 +184,7 @@ button:hover {
 
 .fuel-meter meter {
   width: 400px;
-  height: 25px;
+  height: 26px;
   margin-top: 17px;
 }
 
@@ -201,11 +202,9 @@ button:hover {
 .questionContainer {
   padding-bottom: 1rem;  
   text-align: left;
-  outline: none;
 }
 
 /*input questions*/
-
 .questionText {
   font-weight: bold;
   font-size: 1.3rem;
@@ -222,6 +221,14 @@ button:hover {
 .answer {
   outline: none;
   padding: .5rem;
+}
+
+.answer {
+  padding: .7rem 0;
+  padding-left: .5rem;
+  font-size: 1.2rem; 
+  border-radius: 5px;
+  outline: none; 
 }
 
 .submitAnswerBtn {
@@ -303,10 +310,6 @@ nav {
 } 
 
 /*home page*/
-.home {
-  text-align: center; 
-}
-
 .homeTitle {
   color: #fff;
   margin-bottom: 1rem; 
@@ -347,5 +350,4 @@ nav {
 .footer {
   flex-shrink: 0; 
   padding-bottom: 2rem;
-  text-align: center; 
 }
