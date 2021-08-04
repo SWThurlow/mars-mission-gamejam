@@ -5,6 +5,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: monospace;
 }  
 
 /* CUSTOM PROPS */
@@ -13,22 +14,39 @@
   --secondery-color: #9eadcf;
   --tirtiary-color: #5754a8;
   --text-color: #fff; 
-
-  --my-awesome-color: hsla(133, 100%, 50%, 0.781);
-  --modal-outer: hsla(0,0%,0%,0.8);
-  --modal-inner-bg: hsla(0,0%,100%,1);
 }
 
 /* TAGS */
+body,
+html {
+  height: 100%; 
+}
+
 body {
   background-color: var(--main-color);
   color: var(--text-color);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .title,
 .sub-title {
   color: var(--main-color);
+}
+
+a {
+  color: var(--main-color);
+  text-decoration: none; 
+}
+
+/*containers*/
+.wrapper {
+  width: 80%; 
+  margin: 0 auto; 
+}
+  
+.container { 
+  flex: 1 0 auto;
 }
 
 /*buttons*/
@@ -43,6 +61,8 @@ button {
   text-align: left;
   border-radius: 5px;
   border: 3px solid #fff;
+  font-size: 1.2rem;
+  text-transform: uppercase; 
 }
 
 button:hover {
@@ -61,10 +81,27 @@ button:hover {
 .gameArea {
   display: grid;
   grid-template-columns: 0% 100%;
+  align-items: center;
+  justify-content: center; 
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  background: url(img/stars3.svg);  
+  background: url(img/stars3.svg); 
+  text-align: center;  
+}
+
+.start {
+  padding: 8rem 0;
+}
+
+/*game help*/
+.help {
+  text-align: left; 
+}
+
+
+.endMsg {
+  font-size: 2rem;
 }
 
 /*Player name and ship name screen.*/
@@ -86,6 +123,7 @@ button:hover {
   grid-area: nameLabel;
   background: var(--main-color);
   font-size: 18px;
+  text-align: left;
 }
 
 .launch input[name="getName"] {
@@ -96,6 +134,7 @@ button:hover {
   grid-area: getShip;
   background: var(--main-color);
   font-size: 18px;
+  text-align: left;
 }
 
 .launch input[name="ShipName"] {
@@ -144,7 +183,7 @@ button:hover {
 
 .fuel-meter meter {
   width: 400px;
-  height: 26px;
+  height: 25px;
   margin-top: 17px;
 }
 
@@ -162,14 +201,21 @@ button:hover {
 .questionContainer {
   padding-bottom: 1rem;  
   text-align: left;
+  outline: none;
 }
 
 /*input questions*/
 
 .questionText {
   font-weight: bold;
+  font-size: 1.3rem;
   line-height: 1.2;
   padding-bottom: 1rem;
+  outline: none;
+}
+
+.qInfo {
+  font-size: 1.1rem;
 }
 
 .submitAnswerBtn,
@@ -221,3 +267,85 @@ button:hover {
 .takeOff {
   animation: takeOff 3s linear;
 } 
+
+
+/*header styles*/
+.header {
+  background: var(--secondery-color); 
+  padding: 1rem 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.nav_link {
+  margin-left: 1rem; 
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.logo {
+  color: var(--main-color); 
+  font-size: 1.5rem;  
+  font-weight: bold;  
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-content: center; 
+  flex-direction: column;
+  height: 100%;  
+  width: 50%;  
+  margin: auto;   
+} 
+
+/*home page*/
+.home {
+  text-align: center; 
+}
+
+.homeTitle {
+  color: #fff;
+  margin-bottom: 1rem; 
+}
+
+/*about page styles*/
+.aboutTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;  
+}
+
+.aboutTitle,
+.gameLink {
+  color: var(--secondery-color); 
+}
+
+.gameLink:hover { 
+  text-decoration: underline; 
+}
+
+.aboutDescription {
+  font-size: 1.5rem;
+}
+
+.playBtn {
+  align-self: center; 
+  margin-top: 1.5rem; 
+}
+
+.playBtn a:hover,
+.playBtn:hover {
+  font-weight: bold;  
+  color: #fff; 
+}   
+
+
+/*footer*/
+.footer {
+  flex-shrink: 0; 
+  padding-bottom: 2rem;
+  text-align: center; 
+}

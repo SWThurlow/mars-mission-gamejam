@@ -16,6 +16,7 @@ const winLose = (() => {
       fuelDisplay.removeChild(fuelTank);
       gameArea.style.cssText = 'grid-template-columns: 0% 100%;';
       const winMsg = document.createElement('p');
+      winMsg.classList.add("endMsg");
       winMsg.textContent = 'Congratulations! You made it to Mars!';
       gamePlay.appendChild(winMsg);
     }
@@ -23,9 +24,10 @@ const winLose = (() => {
     function lose() {
       fuelDisplay.removeChild(fuelTank);
       gameArea.style.cssText = 'grid-template-columns: 0% 100%;';
-      const loseMsg = document.createElement('p');
+      const loseMsg = document.createElement('p'); 
+      loseMsg.classList.add("endMsg");
       loseMsg.textContent = "Ohh NO! We've ran out of fuel! ";
-      gamePlay.appendChild(loseMsg);
+      gamePlay.appendChild(loseMsg); 
     }
   
     function winLose(target) {
