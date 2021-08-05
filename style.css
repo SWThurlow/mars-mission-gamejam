@@ -155,7 +155,7 @@ button:hover {
   margin: 0 auto;
   position: relative;
   transform: rotate(-45deg);
-  bottom: -215px;
+  bottom: -225px;
 }
 
 .launch img[src="img/earth.svg"] {
@@ -183,13 +183,12 @@ button:hover {
 }
 
 .fuel-meter meter {
-  width: 400px;
+  width: 350px;
   height: 26px;
   margin-top: 17px;
 }
 
 /*question display styles*/
-
 .questionBox {
   width: 350px;
   margin: auto;
@@ -260,6 +259,50 @@ button:hover {
   text-align: left;
 }
 
+/*End Game*/
+.landing {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+  "endMsg"
+  "playAgain"
+  "rocket"
+  "mars";
+  align-items: center;
+  overflow: hidden;
+}
+
+.landing p {
+  grid-area: endMsg;
+  width: 80%;
+  margin: 20px auto;
+  font-size: 18px;
+}
+
+.landing button {
+  grid-area: playAgain;
+  width: fit-content;
+  margin: 0 auto;;
+}
+
+.landing img[src="img/mars.svg"] {
+  grid-area: mars;
+  margin: 0 auto;
+  position: relative;
+  bottom: -50px;
+  z-index: 100;
+}
+
+.landing img[src="img/rocket.svg"] {
+  grid-area: rocket;
+  margin: 0 auto;
+  position: relative;
+  transform: rotate(-45deg);
+  z-index: 50;
+}
+
 /*Animations*/
 /*For the rocket to take off at the start of the game.*/
 @keyframes takeOff {
@@ -274,7 +317,6 @@ button:hover {
 .takeOff {
   animation: takeOff 3s linear;
 } 
-
 
 /*header styles*/
 .header {
@@ -351,3 +393,48 @@ nav {
   flex-shrink: 0; 
   padding-bottom: 2rem;
 }
+/*For the rocket landing on Mars if the player wins*/
+@keyframes rocketLanding {
+  0% {
+    top: -300px;
+  }
+  100% {
+    top: 110px;
+  }
+}
+
+.rocketLanding {
+  animation: rocketLanding 3s linear;
+  animation-fill-mode: forwards;
+}
+
+/*rocket spiralling animation*/
+@keyframes rocketSpiral {
+  0% {
+    bottom: -280px;
+    left: -330px;
+    transform: rotate(0deg);
+  }
+  50% {
+    bottom: 30px;
+    left: -40px;
+    transform: rotate(0deg);
+  }
+
+  75% {
+    bottom: 100px;
+    transform: rotate(180deg);
+    left: 20%;
+  }
+  100% {
+    bottom: 80px;
+    transform: rotate(360deg);
+    left: 60%;
+  }
+}
+
+.rocketSpiral {
+  animation: rocketSpiral 8s linear;
+  animation-fill-mode: forwards;
+}
+

@@ -50,17 +50,25 @@ const questioning = (() => {
     answerBtn.textContent = 'Answer';
 
     answerBtn.addEventListener('click', () => {
-      [...questionsBox.childNodes].forEach(child =>
-        questionsBox.removeChild(child)
-      );
-      marking(question, answerInput.value);
+      if(answerInput.value === "") {
+        return;
+      } else {
+        [...questionsBox.childNodes].forEach(child =>
+          questionsBox.removeChild(child)
+        );
+        marking(question, answerInput.value);
+      }
     });
 
     //Listening for the enter key so that answer can be given without the mouse.
     window.addEventListener('keydown', (e) => {
       if(e.key === 'Enter'){
-        [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
+        if(answerInput.value === "") {
+          return;
+        } else {
+          [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
         marking(question, answerInput.value);
+        }
       }
     });
 
@@ -183,7 +191,7 @@ const questioning = (() => {
   function keepTrying(question) {
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
-      "Unfortunately that's not right. Hopefully this explanation can help you understand more.";
+      "Unfortunately, that's not right. Hopefully, this explanation can help you understand more.";
       questionsBox.appendChild(keepTrying);
     const explanation = document.createElement('p');
     explanation.textContent = question.explanation;
@@ -200,4 +208,4 @@ const questioning = (() => {
   return { displayQ };
 })();
 
-export { questioning, questionsBox }
+export { questioning, questionsBox, qsAsked }

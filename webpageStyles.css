@@ -1,0 +1,46 @@
+* {
+	font-family: monospace;
+}
+
+:root {
+  --main-color: black;
+  --secondery-color: white;
+}  
+
+a {
+	color: var(--main-color);
+	text-decoration: none; 
+}
+
+.wrapper {
+	width: 80%;
+	margin: 0 auto; 
+}
+
+.header {
+	background: var(--secondery-color); 
+	padding: 1rem 0;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between; 
+}
+
+.nav_link {
+	margin-left: 1rem; 
+	font-weight: bolder;
+	font-size: 1.2rem;
+}
+
+.logo {
+	color: var(--main-color); 
+	font-size: 1.5rem;  
+	font-weight: bold;  
+}
+
+.main {
+	padding-top: 5rem;  
+}
+
+
