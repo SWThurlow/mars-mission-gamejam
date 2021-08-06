@@ -174,14 +174,21 @@ const questioning = (() => {
 
   // If answer is correct.
   function wellDone() {
+    gamePlay.classList.add('postQuestion');
     const wellDoneMsg = document.createElement('p');
     wellDoneMsg.textContent = "That's Correct! Well Done!";
     questionsBox.appendChild(wellDoneMsg);
+    const rocket = new Image(50,50);
+    rocket.classList.add('rightAnswer');
+    rocket.src = 'img/rocket.svg'
+    gamePlay.appendChild(rocket);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'true');
     nextBtn.addEventListener('click', e => {
       [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
+      gamePlay.removeChild(rocket);
+      gamePlay.classList.remove('postQuestion');
       winLose.winLose(e.target);
     });
     questionsBox.appendChild(nextBtn);
@@ -189,6 +196,7 @@ const questioning = (() => {
 
   // If answer is wrong.
   function keepTrying(question) {
+    gamePlay.classList.add('postQuestion');
     const keepTrying = document.createElement('p');
     keepTrying.textContent =
       "Unfortunately, that's not right. Hopefully, this explanation can help you understand more.";
@@ -196,11 +204,17 @@ const questioning = (() => {
     const explanation = document.createElement('p');
     explanation.textContent = question.explanation;
     questionsBox.appendChild(explanation);
+    const rocket = new Image(50,50);
+    rocket.classList.add('wrongAnswer');
+    rocket.src = 'img/rocket.svg'
+    gamePlay.appendChild(rocket);
     const nextBtn = document.createElement('button');
     nextBtn.textContent = 'Onwards!';
     nextBtn.setAttribute('data-correct', 'false');
     nextBtn.addEventListener('click', e => {
       [...questionsBox.childNodes].forEach(child => questionsBox.removeChild(child));
+      gamePlay.removeChild(rocket);
+      gamePlay.classList.remove('postQuestion');
       winLose.winLose(e.target);
     });
     questionsBox.appendChild(nextBtn);

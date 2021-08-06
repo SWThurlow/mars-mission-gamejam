@@ -259,6 +259,26 @@ button:hover {
   text-align: left;
 }
 
+/*After questions.*/
+.postQuestion {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+  "box"
+  "rocket";
+  align-items: center;
+  overflow: hidden;
+}
+
+.postQuestion .questionBox {
+  grid-area: box;
+}
+
+.postQuestion img[src="img/rocket.svg"] {
+  grid-area: rocket;
+  position: relative;
+}
+
 /*End Game*/
 .landing {
   width: 100%;
@@ -307,7 +327,7 @@ button:hover {
 /*For the rocket to take off at the start of the game.*/
 @keyframes takeOff {
   0% {
-     bottom: -215Px;
+    bottom: -215px;
     }
   100% {
     bottom: 500px;
@@ -317,6 +337,103 @@ button:hover {
 .takeOff {
   animation: takeOff 3s linear;
 } 
+
+/*Question animations.*/
+/*If right.*/
+@keyframes rightAnswer {
+  0% {
+    bottom: -160px;
+    left: 0px;
+    transform: rotate(0deg);
+  }
+  50% {
+    bottom: 0px;
+    left: 30%;
+    transform: rotate(-45deg);
+  }
+  100% {
+    bottom: 460px;
+    left: 30%;
+    transform: rotate(-45deg);
+  }
+}
+
+.rightAnswer {
+  animation: rightAnswer 4s ease-out forwards;
+}
+
+/*If wrong.*/
+@keyframes wrongAnswer {
+  0% {
+    bottom: -160px;
+    left: 0px;
+    transform: rotate(0deg);
+  }
+  25% {
+    bottom: -20px;
+    left: 60%;
+    transform: rotate(45deg);
+  }
+  75%{
+    bottom: 100px;
+    left: 30%;
+    transform: rotate(-80deg)
+  }
+  100% {
+    bottom: 460px;
+    left: 30%;
+    transform: rotate(-45deg);
+  }
+}
+
+.wrongAnswer {
+  animation: wrongAnswer 4s ease-out forwards;
+}
+
+/*For the rocket landing on Mars if the player wins*/
+@keyframes rocketLanding {
+  0% {
+    top: -300px;
+  }
+  100% {
+    top: 110px;
+  }
+}
+
+.rocketLanding {
+  animation: rocketLanding 3s linear;
+  animation-fill-mode: forwards;
+}
+
+/*rocket spiralling animation*/
+@keyframes rocketSpiral {
+  0% {
+    bottom: -280px;
+    left: -330px;
+    transform: rotate(0deg);
+  }
+  50% {
+    bottom: 30px;
+    left: -40px;
+    transform: rotate(0deg);
+  }
+
+  75% {
+    bottom: 100px;
+    transform: rotate(180deg);
+    left: 20%;
+  }
+  100% {
+    bottom: 80px;
+    transform: rotate(360deg);
+    left: 60%;
+  }
+}
+
+.rocketSpiral {
+  animation: rocketSpiral 8s linear;
+  animation-fill-mode: forwards;
+}
 
 /*header styles*/
 .header {
@@ -393,48 +510,3 @@ nav {
   flex-shrink: 0; 
   padding-bottom: 2rem;
 }
-/*For the rocket landing on Mars if the player wins*/
-@keyframes rocketLanding {
-  0% {
-    top: -300px;
-  }
-  100% {
-    top: 110px;
-  }
-}
-
-.rocketLanding {
-  animation: rocketLanding 3s linear;
-  animation-fill-mode: forwards;
-}
-
-/*rocket spiralling animation*/
-@keyframes rocketSpiral {
-  0% {
-    bottom: -280px;
-    left: -330px;
-    transform: rotate(0deg);
-  }
-  50% {
-    bottom: 30px;
-    left: -40px;
-    transform: rotate(0deg);
-  }
-
-  75% {
-    bottom: 100px;
-    transform: rotate(180deg);
-    left: 20%;
-  }
-  100% {
-    bottom: 80px;
-    transform: rotate(360deg);
-    left: 60%;
-  }
-}
-
-.rocketSpiral {
-  animation: rocketSpiral 8s linear;
-  animation-fill-mode: forwards;
-}
-
