@@ -1,9 +1,9 @@
-//The fuel meter.
+// The fuel meter.
 const fuelTank = document.createElement('div');
 fuelTank.setAttribute('class', 'fuel-meter');
 const fuelLabel = document.createElement('label');
 fuelLabel.setAttribute('for', 'fuel');
-fuelLabel.innerHTML = 'Fuel:'
+fuelLabel.innerHTML = 'Fuel:';
 fuelTank.appendChild(fuelLabel);
 const fuelMeter = document.createElement('meter');
 fuelMeter.setAttribute('id', 'fuel');
@@ -13,6 +13,7 @@ fuelMeter.setAttribute('low', '33');
 fuelMeter.setAttribute('high', '66');
 fuelMeter.setAttribute('optimum', '80');
 fuelMeter.setAttribute('title', 'Fuel %');
+fuelMeter.setAttribute('value', '100');
 fuelTank.appendChild(fuelMeter);
 
 /* =====================================================
@@ -25,6 +26,7 @@ const fuelControl = (() => {
   let isFuelEmpty = false;
 
   let _fuelMeterValue = fuelMeter.value;
+
   const _fuelMeterMin = fuelMeter.min;
   const _fuelMeterMax = fuelMeter.max;
 
@@ -37,7 +39,6 @@ const fuelControl = (() => {
     }
     _fuelMeterValue -= _fuelChangeCorrect;
     fuelMeter.value = _fuelMeterValue;
-    console.log(_fuelMeterValue)
   };
 
   // Decrease fuel for correct answer
@@ -62,5 +63,5 @@ const fuelControl = (() => {
     checkFuelEmpty,
   };
 })();
-  
-export { fuelTank, fuelControl }
+
+export { fuelTank, fuelControl };
