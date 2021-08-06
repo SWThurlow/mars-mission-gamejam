@@ -41,8 +41,8 @@ const helpH3 = document.createElement('h3');
 helpH3.textContent = 'How To Play The Game';
 help.appendChild(helpH3);
 const gameInstructions = document.createElement('p');
-gameInstructions.textContent =
-  "You've been selected to be the captain of the first manned space mission to Mars! As the captain of the mission you will need to help the crew answer questions that will help power the ship and make sure you make it to mars in one piece.";
+gameInstructions.innerHTML =
+  "You've been selected to be the captain of the first manned space mission to Mars! <br><br>As the captain of the mission you will need to help the crew answer questions that will help power the ship and make sure you make it to mars in one piece. Next to each of the questions will be a small arrow, if you click on the arrow it should help provide some information to help you answer the question.";
 help.appendChild(gameInstructions);
 const backBtn = document.createElement('button');
 backBtn.textContent = 'Close';

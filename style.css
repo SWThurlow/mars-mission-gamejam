@@ -40,6 +40,10 @@ a {
   text-decoration: none; 
 }
 
+p {
+  font-size: 1.1rem;
+}
+
 /*containers*/
 .wrapper {
   width: 80%; 
@@ -98,7 +102,22 @@ button:hover {
 
 /*game help*/
 .help {
+  padding: 5px 15px 0 0;
+  margin: 5px;
   text-align: left; 
+  background-color: var(--tirtiary-color);
+}
+
+.help h2, h3 {
+  margin: 15px;
+}
+
+.help p {
+  margin-left: 15px;
+}
+
+.help button {
+  margin: 20px;
 }
 
 
@@ -196,6 +215,10 @@ button:hover {
   margin-top: 1rem;
   background: var(--tirtiary-color);
   color: #fff;  
+}
+
+.questionBox button {
+  margin-top: 15px;
 }
 
 .questionContainer {
