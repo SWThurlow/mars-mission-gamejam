@@ -44,6 +44,7 @@ const winLose = (() => {
           gamePlay.appendChild(start);
           right = 0;
           qsAsked.splice(0);
+          gamePlay.classList.remove('landing');
         });
         gamePlay.appendChild(playAgain);
       }, 4000)
@@ -73,6 +74,7 @@ const winLose = (() => {
           gamePlay.appendChild(start);
           right = 0;
           qsAsked.splice(0);
+          gamePlay.classList.remove('landing');
         });
         gamePlay.appendChild(playAgain);
       }, 8000)
