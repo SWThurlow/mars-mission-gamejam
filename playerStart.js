@@ -1,5 +1,5 @@
 //Importing the fuel tank so that it can be attached to the game area.
-import { fuelTank } from './fuel.js';
+import { fuelTank, fuelControl } from './fuel.js';
 // Import question display. 
 import { questioning } from './qPicker.js';
 
@@ -75,6 +75,7 @@ function playerStart() {
         gameArea.style.cssText = 'grid-template-columns: 10% 90%;';
         fuelDisplay.appendChild(fuelTank);
         fuelTank.childNodes[1].setAttribute('value', '100');
+        fuelControl.getFuelValue();
         questioning.displayQ();
       }, 3000);
     });

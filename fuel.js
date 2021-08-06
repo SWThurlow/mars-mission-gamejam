@@ -52,7 +52,9 @@ const fuelControl = (() => {
     fuelMeter.value = _fuelMeterValue;
   };
 
-  const getFuelValue = () => _fuelMeterValue;
+  const getFuelValue = () => {
+    _fuelMeterValue = fuelMeter.value;
+  };
 
   const checkFuelEmpty = () => isFuelEmpty;
 
