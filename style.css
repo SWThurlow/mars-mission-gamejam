@@ -32,8 +32,8 @@ body {
 }
 
 main {
-  min-width: 600px;
-  background-color: hsla(0, 0%, 0%, 0.60);
+  min-width: 90%;
+  background-color: hsla(240, 19%, 25%, 0.6);
 }
 
 .title,
